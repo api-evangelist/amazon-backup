@@ -1,0 +1,553 @@
+openapi: 3.1.0
+info:
+  title: Amazon Backup API
+  description: >-
+    AWS Backup is a fully managed backup service that makes it easy to centralize
+    and automate the back up of data across AWS services. Using the AWS Backup API,
+    you can create backup plans, manage backup vaults, start and monitor backup and
+    restore jobs, and manage recovery points.
+  version: '2018-11-15'
+  contact:
+    name: Amazon Web Services
+    url: https://aws.amazon.com/contact-us/
+  termsOfService: https://aws.amazon.com/service-terms/
+externalDocs:
+  description: Amazon Backup API Reference
+  url: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_Reference.html
+servers:
+  - url: https://backup.{region}.amazonaws.com
+    description: Amazon Backup Regional Endpoint
+    variables:
+      region:
+        default: us-east-1
+        description: AWS Region
+tags:
+  - name: Backup Plans
+    description: Operations for creating and managing backup plans
+  - name: Backup Vaults
+    description: Operations for creating and managing backup vaults
+  - name: Backup Jobs
+    description: Operations for starting and monitoring backup jobs
+  - name: Restore Jobs
+    description: Operations for restoring backed-up resources
+  - name: Recovery Points
+    description: Operations for managing recovery points
+paths:
+  /backup/plans:
+    get:
+      operationId: ListBackupPlans
+      summary: List backup plans
+      description: >-
+        Returns a list of all active backup plans for an authenticated account.
+      tags:
+        - Backup Plans
+      parameters:
+        - name: maxResults
+          in: query
+          description: Maximum number of results to return.
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 1000
+        - name: nextToken
+          in: query
+          description: Token for pagination.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListBackupPlansResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidParameterValueException'
+        '429':
+          description: Too many requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LimitExceededException'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceUnavailableException'
+    put:
+      operationId: CreateBackupPlan
+      summary: Create a backup plan
+      description: >-
+        Creates a backup plan using a backup plan name and backup rules.
+        A backup plan defines when and how to back up your AWS resources.
+      tags:
+        - Backup Plans
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateBackupPlanRequest'
+      responses:
+        '200':
+          description: Backup plan created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateBackupPlanResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidParameterValueException'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceUnavailableException'
+
+  /backup/plans/{backupPlanId}:
+    get:
+      operationId: GetBackupPlan
+      summary: Get backup plan details
+      description: >-
+        Returns the body of a backup plan in JSON format, in addition to plan metadata.
+      tags:
+        - Backup Plans
+      parameters:
+        - name: backupPlanId
+          in: path
+          required: true
+          description: Uniquely identifies a backup plan.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetBackupPlanResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidParameterValueException'
+        '404':
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceNotFoundException'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceUnavailableException'
+    delete:
+      operationId: DeleteBackupPlan
+      summary: Delete a backup plan
+      description: >-
+        Deletes a backup plan. A backup plan can only be deleted after all
+        associated selections of resources have been deleted.
+      tags:
+        - Backup Plans
+      parameters:
+        - name: backupPlanId
+          in: path
+          required: true
+          description: Uniquely identifies a backup plan.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Backup plan deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteBackupPlanResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidParameterValueException'
+        '404':
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceNotFoundException'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceUnavailableException'
+
+  /backup-vaults:
+    get:
+      operationId: ListBackupVaults
+      summary: List backup vaults
+      description: >-
+        Returns a list of recovery point storage containers along with information
+        about them.
+      tags:
+        - Backup Vaults
+      parameters:
+        - name: maxResults
+          in: query
+          description: Maximum number of results to return.
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 1000
+        - name: nextToken
+          in: query
+          description: Token for pagination.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListBackupVaultsResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidParameterValueException'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceUnavailableException'
+
+  /backup-jobs:
+    get:
+      operationId: ListBackupJobs
+      summary: List backup jobs
+      description: >-
+        Returns a list of existing backup jobs for an authenticated account.
+      tags:
+        - Backup Jobs
+      parameters:
+        - name: maxResults
+          in: query
+          description: Maximum number of results to return.
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 1000
+        - name: nextToken
+          in: query
+          description: Token for pagination.
+          schema:
+            type: string
+        - name: byState
+          in: query
+          description: Filter by job state.
+          schema:
+            type: string
+            enum:
+              - CREATED
+              - PENDING
+              - RUNNING
+              - ABORTING
+              - ABORTED
+              - COMPLETED
+              - FAILED
+              - EXPIRED
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListBackupJobsResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidParameterValueException'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceUnavailableException'
+
+  /restore-jobs:
+    get:
+      operationId: ListRestoreJobs
+      summary: List restore jobs
+      description: >-
+        Returns a list of jobs that AWS Backup initiated to restore a saved
+        resource, including details about the recovery process.
+      tags:
+        - Restore Jobs
+      parameters:
+        - name: maxResults
+          in: query
+          description: Maximum number of results to return.
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 1000
+        - name: nextToken
+          in: query
+          description: Token for pagination.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListRestoreJobsResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidParameterValueException'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceUnavailableException'
+
+components:
+  schemas:
+    BackupPlanSummary:
+      type: object
+      properties:
+        backupPlanArn:
+          type: string
+          description: The ARN of the backup plan.
+        backupPlanId:
+          type: string
+          description: Uniquely identifies a backup plan.
+        backupPlanName:
+          type: string
+          description: The display name of a backup plan.
+        creationDate:
+          type: string
+          format: date-time
+          description: The date and time the resource backup plan was created.
+        lastExecutionDate:
+          type: string
+          format: date-time
+          description: The last time a job to back up resources was run.
+
+    ListBackupPlansResponse:
+      type: object
+      properties:
+        backupPlansList:
+          type: array
+          items:
+            $ref: '#/components/schemas/BackupPlanSummary'
+        nextToken:
+          type: string
+
+    CreateBackupPlanRequest:
+      type: object
+      required:
+        - BackupPlan
+      properties:
+        BackupPlan:
+          type: object
+          required:
+            - BackupPlanName
+            - Rules
+          properties:
+            BackupPlanName:
+              type: string
+              description: The display name of a backup plan.
+            Rules:
+              type: array
+              items:
+                type: object
+                required:
+                  - RuleName
+                  - TargetBackupVaultName
+                properties:
+                  RuleName:
+                    type: string
+                  TargetBackupVaultName:
+                    type: string
+                  ScheduleExpression:
+                    type: string
+                  StartWindowMinutes:
+                    type: integer
+                  CompletionWindowMinutes:
+                    type: integer
+                  Lifecycle:
+                    type: object
+                    properties:
+                      MoveToColdStorageAfterDays:
+                        type: integer
+                      DeleteAfterDays:
+                        type: integer
+
+    CreateBackupPlanResponse:
+      type: object
+      properties:
+        backupPlanId:
+          type: string
+        backupPlanArn:
+          type: string
+        creationDate:
+          type: string
+          format: date-time
+
+    GetBackupPlanResponse:
+      type: object
+      properties:
+        backupPlanId:
+          type: string
+        backupPlanArn:
+          type: string
+        backupPlan:
+          type: object
+          properties:
+            BackupPlanName:
+              type: string
+            Rules:
+              type: array
+              items:
+                type: object
+        creationDate:
+          type: string
+          format: date-time
+
+    DeleteBackupPlanResponse:
+      type: object
+      properties:
+        backupPlanId:
+          type: string
+        backupPlanArn:
+          type: string
+        deletionDate:
+          type: string
+          format: date-time
+
+    ListBackupVaultsResponse:
+      type: object
+      properties:
+        backupVaultList:
+          type: array
+          items:
+            type: object
+            properties:
+              backupVaultName:
+                type: string
+              backupVaultArn:
+                type: string
+              creationDate:
+                type: string
+                format: date-time
+              numberOfRecoveryPoints:
+                type: integer
+        nextToken:
+          type: string
+
+    ListBackupJobsResponse:
+      type: object
+      properties:
+        backupJobs:
+          type: array
+          items:
+            type: object
+            properties:
+              backupJobId:
+                type: string
+              backupVaultName:
+                type: string
+              backupVaultArn:
+                type: string
+              resourceArn:
+                type: string
+              state:
+                type: string
+              creationDate:
+                type: string
+                format: date-time
+              completionDate:
+                type: string
+                format: date-time
+        nextToken:
+          type: string
+
+    ListRestoreJobsResponse:
+      type: object
+      properties:
+        restoreJobs:
+          type: array
+          items:
+            type: object
+            properties:
+              restoreJobId:
+                type: string
+              recoveryPointArn:
+                type: string
+              createdResourceArn:
+                type: string
+              status:
+                type: string
+              creationDate:
+                type: string
+                format: date-time
+              completionDate:
+                type: string
+                format: date-time
+        nextToken:
+          type: string
+
+    InvalidParameterValueException:
+      type: object
+      properties:
+        Code:
+          type: string
+        Message:
+          type: string
+
+    ResourceNotFoundException:
+      type: object
+      properties:
+        Code:
+          type: string
+        Message:
+          type: string
+
+    LimitExceededException:
+      type: object
+      properties:
+        Code:
+          type: string
+        Message:
+          type: string
+
+    ServiceUnavailableException:
+      type: object
+      properties:
+        Code:
+          type: string
+        Message:
+          type: string

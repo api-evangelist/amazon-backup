@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.com/schemas/amazon/backup/backup-plan.json",
+  "title": "Amazon Backup Plan",
+  "description": "Represents an AWS Backup plan with its associated rules, schedule, and lifecycle configuration.",
+  "type": "object",
+  "required": ["backupPlanName", "rules"],
+  "properties": {
+    "backupPlanArn": {
+      "type": "string",
+      "description": "The Amazon Resource Name (ARN) of the backup plan.",
+      "pattern": "^arn:aws:backup:[a-z0-9-]+:[0-9]{12}:backup-plan:.+$"
+    },
+    "backupPlanId": {
+      "type": "string",
+      "description": "Uniquely identifies a backup plan."
+    },
+    "backupPlanName": {
+      "type": "string",
+      "description": "The display name of a backup plan.",
+      "minLength": 1,
+      "maxLength": 50
+    },
+    "creationDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time the resource backup plan was created."
+    },
+    "lastExecutionDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The last time a job to back up resources was run with this rule."
+    },
+    "rules": {
+      "type": "array",
+      "description": "An array of BackupRule objects, each of which specifies a scheduled task to back up a selection of resources.",
+      "items": {
+        "type": "object",
+        "required": ["ruleName", "targetBackupVaultName"],
+        "properties": {
+          "ruleName": {
+            "type": "string",
+            "description": "A display name for a backup rule."
+          },
+          "targetBackupVaultName": {
+            "type": "string",
+            "description": "The name of a logical container where backups are stored."
+          },
+          "scheduleExpression": {
+            "type": "string",
+            "description": "A cron expression in UTC specifying when Backup initiates a backup job."
+          },
+          "startWindowMinutes": {
+            "type": "integer",
+            "description": "A value in minutes after a backup is scheduled before a job will be canceled."
+          },
+          "completionWindowMinutes": {
+            "type": "integer",
+            "description": "A value in minutes after a backup job is successfully started before it must be completed."
+          },
+          "lifecycle": {
+            "type": "object",
+            "description": "The lifecycle defines when a protected resource is transitioned to cold storage and when it expires.",
+            "properties": {
+              "moveToColdStorageAfterDays": {
+                "type": "integer",
+                "description": "Number of days after creation that a recovery point is moved to cold storage."
+              },
+              "deleteAfterDays": {
+                "type": "integer",
+                "description": "Number of days after creation that a recovery point is deleted."
+              }
+            }
+          }
+        }
+      }
+    },
+    "advancedBackupSettings": {
+      "type": "array",
+      "description": "Advanced backup settings for the backup plan.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "resourceType": {
+            "type": "string",
+            "description": "The type of AWS resource to be backed up."
+          },
+          "backupOptions": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

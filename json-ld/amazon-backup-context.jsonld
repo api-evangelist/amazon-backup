@@ -1,0 +1,65 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "backup": "https://docs.aws.amazon.com/aws-backup/latest/devguide/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+
+    "BackupPlan": {
+      "@id": "backup:BackupPlan",
+      "@context": {
+        "backupPlanName": "schema:name",
+        "backupPlanId": "backup:backupPlanId",
+        "backupPlanArn": "backup:backupPlanArn",
+        "rules": {
+          "@id": "backup:rules",
+          "@container": "@set"
+        },
+        "creationDate": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "BackupVault": {
+      "@id": "backup:BackupVault",
+      "@context": {
+        "backupVaultName": "schema:name",
+        "backupVaultArn": "backup:backupVaultArn",
+        "numberOfRecoveryPoints": {
+          "@id": "backup:numberOfRecoveryPoints",
+          "@type": "xsd:integer"
+        }
+      }
+    },
+
+    "BackupJob": {
+      "@id": "backup:BackupJob",
+      "@context": {
+        "backupJobId": "backup:backupJobId",
+        "state": "backup:state",
+        "resourceArn": "backup:resourceArn",
+        "creationDate": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "completionDate": {
+          "@id": "backup:completionDate",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "RecoveryPoint": {
+      "@id": "backup:RecoveryPoint",
+      "@context": {
+        "recoveryPointArn": "backup:recoveryPointArn",
+        "backupVaultName": "backup:backupVaultName",
+        "resourceArn": "backup:resourceArn",
+        "status": "backup:status"
+      }
+    }
+  }
+}
