@@ -36,7 +36,7 @@ paths:
   /backup/plans:
     get:
       operationId: ListBackupPlans
-      summary: List backup plans
+      summary: Amazon Backup List backup plans
       description: >-
         Returns a list of all active backup plans for an authenticated account.
       tags:
@@ -81,7 +81,7 @@ paths:
                 $ref: '#/components/schemas/ServiceUnavailableException'
     put:
       operationId: CreateBackupPlan
-      summary: Create a backup plan
+      summary: Amazon Backup Create a backup plan
       description: >-
         Creates a backup plan using a backup plan name and backup rules.
         A backup plan defines when and how to back up your AWS resources.
@@ -116,7 +116,7 @@ paths:
   /backup/plans/{backupPlanId}:
     get:
       operationId: GetBackupPlan
-      summary: Get backup plan details
+      summary: Amazon Backup Get backup plan details
       description: >-
         Returns the body of a backup plan in JSON format, in addition to plan metadata.
       tags:
@@ -155,7 +155,7 @@ paths:
                 $ref: '#/components/schemas/ServiceUnavailableException'
     delete:
       operationId: DeleteBackupPlan
-      summary: Delete a backup plan
+      summary: Amazon Backup Delete a backup plan
       description: >-
         Deletes a backup plan. A backup plan can only be deleted after all
         associated selections of resources have been deleted.
@@ -197,7 +197,7 @@ paths:
   /backup-vaults:
     get:
       operationId: ListBackupVaults
-      summary: List backup vaults
+      summary: Amazon Backup List backup vaults
       description: >-
         Returns a list of recovery point storage containers along with information
         about them.
@@ -239,7 +239,7 @@ paths:
   /backup-jobs:
     get:
       operationId: ListBackupJobs
-      summary: List backup jobs
+      summary: Amazon Backup List backup jobs
       description: >-
         Returns a list of existing backup jobs for an authenticated account.
       tags:
@@ -294,7 +294,7 @@ paths:
   /restore-jobs:
     get:
       operationId: ListRestoreJobs
-      summary: List restore jobs
+      summary: Amazon Backup List restore jobs
       description: >-
         Returns a list of jobs that AWS Backup initiated to restore a saved
         resource, including details about the recovery process.
