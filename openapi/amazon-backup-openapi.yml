@@ -22,16 +22,14 @@ servers:
         default: us-east-1
         description: AWS Region
 tags:
+  - name: Backup Jobs
+    description: Operations for starting and monitoring backup jobs
   - name: Backup Plans
     description: Operations for creating and managing backup plans
   - name: Backup Vaults
     description: Operations for creating and managing backup vaults
-  - name: Backup Jobs
-    description: Operations for starting and monitoring backup jobs
   - name: Restore Jobs
     description: Operations for restoring backed-up resources
-  - name: Recovery Points
-    description: Operations for managing recovery points
 paths:
   /backup/plans:
     get:
