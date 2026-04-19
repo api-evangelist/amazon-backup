@@ -1,0 +1,111 @@
+{
+  "title": "AWS Backup Resource Structure",
+  "description": "Structural documentation for key resources in the AWS Backup API",
+  "resources": {
+    "BackupPlan": {
+      "description": "Defines automated backup schedule, lifecycle, retention rules, and copy actions",
+      "identifiers": ["BackupPlanId", "BackupPlanArn", "VersionId"],
+      "fields": {
+        "BackupPlanId": { "type": "string", "readOnly": true },
+        "BackupPlanArn": { "type": "string", "readOnly": true },
+        "BackupPlanName": { "type": "string", "required": true },
+        "VersionId": { "type": "string", "readOnly": true },
+        "CreationDate": { "type": "datetime", "readOnly": true },
+        "LastExecutionDate": { "type": "datetime", "readOnly": true },
+        "Rules": {
+          "type": "array",
+          "required": true,
+          "items": {
+            "RuleName": { "type": "string", "required": true },
+            "TargetBackupVaultName": { "type": "string", "required": true },
+            "ScheduleExpression": { "type": "string", "required": false },
+            "StartWindowMinutes": { "type": "integer" },
+            "CompletionWindowMinutes": { "type": "integer" },
+            "Lifecycle": {
+              "MoveToColdStorageAfterDays": { "type": "integer" },
+              "DeleteAfterDays": { "type": "integer" }
+            },
+            "CopyActions": { "type": "array" },
+            "EnableContinuousBackup": { "type": "boolean" }
+          }
+        }
+      },
+      "relationships": {
+        "hasMany": ["BackupSelection", "RecoveryPoint"]
+      }
+    },
+    "BackupVault": {
+      "description": "Secure container that stores and organizes recovery points",
+      "identifiers": ["BackupVaultName", "BackupVaultArn"],
+      "fields": {
+        "BackupVaultName": { "type": "string", "required": true },
+        "BackupVaultArn": { "type": "string", "readOnly": true },
+        "EncryptionKeyArn": { "type": "string", "required": false },
+        "CreationDate": { "type": "datetime", "readOnly": true },
+        "NumberOfRecoveryPoints": { "type": "integer", "readOnly": true },
+        "Locked": { "type": "boolean", "readOnly": true },
+        "MinRetentionDays": { "type": "integer", "readOnly": true },
+        "MaxRetentionDays": { "type": "integer", "readOnly": true }
+      },
+      "relationships": {
+        "hasMany": ["RecoveryPoint"]
+      }
+    },
+    "BackupSelection": {
+      "description": "Defines which AWS resources are included in a backup plan",
+      "identifiers": ["SelectionId"],
+      "fields": {
+        "SelectionId": { "type": "string", "readOnly": true },
+        "BackupPlanId": { "type": "string", "required": true },
+        "SelectionName": { "type": "string", "required": true },
+        "IamRoleArn": { "type": "string", "required": true },
+        "Resources": { "type": "array[string]" },
+        "ListOfTags": { "type": "array" },
+        "NotResources": { "type": "array[string]" }
+      },
+      "relationships": {
+        "belongsTo": ["BackupPlan"]
+      }
+    },
+    "RecoveryPoint": {
+      "description": "A point-in-time copy of a backed-up resource",
+      "identifiers": ["RecoveryPointArn"],
+      "fields": {
+        "RecoveryPointArn": { "type": "string", "readOnly": true },
+        "BackupVaultName": { "type": "string", "readOnly": true },
+        "ResourceArn": { "type": "string", "readOnly": true },
+        "ResourceType": { "type": "string", "readOnly": true },
+        "Status": { "type": "enum[AVAILABLE|DELETING|EXPIRED|PARTIAL]", "readOnly": true },
+        "CreationDate": { "type": "datetime", "readOnly": true },
+        "CompletionDate": { "type": "datetime", "readOnly": true },
+        "BackupSizeInBytes": { "type": "integer", "readOnly": true },
+        "Lifecycle": {
+          "MoveToColdStorageAfterDays": { "type": "integer" },
+          "DeleteAfterDays": { "type": "integer" }
+        },
+        "StorageClass": { "type": "enum[WARM|COLD|DELETED]", "readOnly": true }
+      },
+      "relationships": {
+        "belongsTo": ["BackupVault"],
+        "associatedWith": ["BackupJob"]
+      }
+    },
+    "BackupJob": {
+      "description": "A backup operation that creates a recovery point",
+      "identifiers": ["BackupJobId"],
+      "fields": {
+        "BackupJobId": { "type": "string", "readOnly": true },
+        "BackupVaultName": { "type": "string", "readOnly": true },
+        "BackupVaultArn": { "type": "string", "readOnly": true },
+        "ResourceArn": { "type": "string", "readOnly": true },
+        "State": { "type": "enum[CREATED|PENDING|RUNNING|ABORTING|ABORTED|COMPLETED|FAILED|EXPIRED|PARTIAL]", "readOnly": true },
+        "StartBy": { "type": "datetime", "readOnly": true },
+        "CreationDate": { "type": "datetime", "readOnly": true },
+        "CompletionDate": { "type": "datetime", "readOnly": true },
+        "BackupSizeInBytes": { "type": "integer", "readOnly": true },
+        "PercentDone": { "type": "string", "readOnly": true },
+        "IamRoleArn": { "type": "string", "readOnly": true }
+      }
+    }
+  }
+}

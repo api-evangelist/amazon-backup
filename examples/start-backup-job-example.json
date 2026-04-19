@@ -1,0 +1,33 @@
+{
+  "request": {
+    "method": "PUT",
+    "url": "https://backup.us-east-1.amazonaws.com/backup-jobs",
+    "headers": {
+      "Content-Type": "application/json",
+      "Authorization": "AWS4-HMAC-SHA256 Credential=..."
+    },
+    "body": {
+      "BackupVaultName": "Default",
+      "ResourceArn": "arn:aws:dynamodb:us-east-1:123456789012:table/MyTable",
+      "IamRoleArn": "arn:aws:iam::123456789012:role/AWSBackupDefaultServiceRole",
+      "IdempotencyToken": "550e8400-e29b-41d4-a716-446655440000",
+      "StartWindowMinutes": 60,
+      "CompleteWindowMinutes": 120,
+      "Lifecycle": {
+        "DeleteAfterDays": 35
+      },
+      "RecoveryPointTags": {
+        "Source": "ManualBackup",
+        "Table": "MyTable"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "BackupJobId": "bj-12345678-1234-1234-1234-123456789012",
+      "RecoveryPointArn": "arn:aws:dynamodb:us-east-1:123456789012:table/MyTable/backup/01234567890123-abcdefgh",
+      "CreationDate": "2026-04-19T12:05:00Z"
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "request": {
+    "method": "PUT",
+    "url": "https://backup.us-east-1.amazonaws.com/backup/plans",
+    "headers": {
+      "Content-Type": "application/json",
+      "Authorization": "AWS4-HMAC-SHA256 Credential=..."
+    },
+    "body": {
+      "BackupPlan": {
+        "BackupPlanName": "DailyBackupPlan",
+        "Rules": [
+          {
+            "RuleName": "DailyRule",
+            "TargetBackupVaultName": "Default",
+            "ScheduleExpression": "cron(0 5 ? * * *)",
+            "StartWindowMinutes": 60,
+            "CompletionWindowMinutes": 180,
+            "Lifecycle": {
+              "MoveToColdStorageAfterDays": 30,
+              "DeleteAfterDays": 365
+            },
+            "CopyActions": [
+              {
+                "DestinationBackupVaultArn": "arn:aws:backup:us-west-2:123456789012:backup-vault:Default",
+                "Lifecycle": {
+                  "DeleteAfterDays": 365
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "BackupPlanTags": {
+        "Environment": "Production",
+        "CostCenter": "Engineering"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "BackupPlanId": "bp-12345678-1234-1234-1234-123456789012",
+      "BackupPlanArn": "arn:aws:backup:us-east-1:123456789012:backup-plan:bp-12345678-1234-1234-1234-123456789012",
+      "VersionId": "version1",
+      "CreationDate": "2026-04-19T12:00:00Z"
+    }
+  }
+}

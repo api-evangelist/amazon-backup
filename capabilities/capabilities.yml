@@ -1,0 +1,248 @@
+capabilities:
+  - id: manage-backup-plans
+    name: Manage Backup Plans
+    description: >-
+      Create, update, and delete backup plans that define automated backup
+      schedules, lifecycle policies, retention rules, and cross-region copy
+      actions for AWS resources.
+    operations:
+      - CreateBackupPlan
+      - GetBackupPlan
+      - UpdateBackupPlan
+      - DeleteBackupPlan
+      - ListBackupPlans
+      - ListBackupPlanVersions
+      - ExportBackupPlanTemplate
+      - GetBackupPlanFromJSON
+      - GetBackupPlanFromTemplate
+      - ListBackupPlanTemplates
+    tags:
+      - Backup Plans
+      - Scheduling
+      - Automation
+
+  - id: manage-backup-vaults
+    name: Manage Backup Vaults
+    description: >-
+      Create and manage secure backup vaults that store recovery points.
+      Configure vault access policies, lock configurations (WORM), and
+      event notifications for backup activity monitoring.
+    operations:
+      - CreateBackupVault
+      - DescribeBackupVault
+      - DeleteBackupVault
+      - ListBackupVaults
+      - GetBackupVaultAccessPolicy
+      - PutBackupVaultAccessPolicy
+      - DeleteBackupVaultAccessPolicy
+      - GetBackupVaultNotifications
+      - PutBackupVaultNotifications
+      - DeleteBackupVaultNotifications
+      - PutBackupVaultLockConfiguration
+      - DeleteBackupVaultLockConfiguration
+      - CreateLogicallyAirGappedBackupVault
+    tags:
+      - Backup Vaults
+      - Security
+      - Compliance
+
+  - id: manage-backup-selections
+    name: Manage Backup Selections
+    description: >-
+      Define which AWS resources to back up using ARN-based or tag-based
+      resource selection within a backup plan.
+    operations:
+      - CreateBackupSelection
+      - GetBackupSelection
+      - DeleteBackupSelection
+      - ListBackupSelections
+    tags:
+      - Resource Selection
+      - Backup Plans
+
+  - id: run-backup-jobs
+    name: Run Backup Jobs
+    description: >-
+      Manually start, monitor, and stop backup jobs for AWS resources.
+      Track job status and list backup job history.
+    operations:
+      - StartBackupJob
+      - StopBackupJob
+      - DescribeBackupJob
+      - ListBackupJobs
+      - ListBackupJobSummaries
+    tags:
+      - Backup Jobs
+      - Operations
+
+  - id: manage-recovery-points
+    name: Manage Recovery Points
+    description: >-
+      Manage recovery points (backups) stored in vaults. Update lifecycle
+      policies, delete recovery points, and retrieve restore metadata.
+    operations:
+      - DescribeRecoveryPoint
+      - UpdateRecoveryPointLifecycle
+      - DeleteRecoveryPoint
+      - ListRecoveryPointsByBackupVault
+      - ListRecoveryPointsByResource
+      - GetRecoveryPointRestoreMetadata
+      - DisassociateRecoveryPoint
+      - DisassociateRecoveryPointFromParent
+    tags:
+      - Recovery Points
+      - Lifecycle
+
+  - id: run-restore-jobs
+    name: Run Restore Jobs
+    description: >-
+      Start restore jobs from recovery points and monitor restore job status.
+    operations:
+      - StartRestoreJob
+      - DescribeRestoreJob
+      - ListRestoreJobs
+      - ListRestoreJobsByProtectedResource
+      - ListRestoreJobSummaries
+      - GetRestoreJobMetadata
+    tags:
+      - Restore
+      - Recovery
+
+  - id: run-copy-jobs
+    name: Run Copy Jobs
+    description: >-
+      Copy recovery points cross-region or cross-account for disaster
+      recovery and compliance purposes.
+    operations:
+      - StartCopyJob
+      - DescribeCopyJob
+      - ListCopyJobs
+      - ListCopyJobSummaries
+    tags:
+      - Copy
+      - Cross-Region
+      - Disaster Recovery
+
+  - id: manage-frameworks
+    name: Manage Frameworks
+    description: >-
+      Create and manage compliance frameworks with controls that evaluate
+      backup configurations against governance requirements.
+    operations:
+      - CreateFramework
+      - DescribeFramework
+      - UpdateFramework
+      - DeleteFramework
+      - ListFrameworks
+    tags:
+      - Compliance
+      - Governance
+      - Frameworks
+
+  - id: manage-report-plans
+    name: Manage Report Plans
+    description: >-
+      Create report plans that generate backup compliance and operational
+      reports delivered to an S3 bucket.
+    operations:
+      - CreateReportPlan
+      - DescribeReportPlan
+      - UpdateReportPlan
+      - DeleteReportPlan
+      - ListReportPlans
+      - StartReportJob
+      - DescribeReportJob
+      - ListReportJobs
+    tags:
+      - Reporting
+      - Compliance
+
+  - id: manage-restore-testing
+    name: Manage Restore Testing
+    description: >-
+      Create restore testing plans and selections to automate periodic
+      restore tests and validate backup recoverability.
+    operations:
+      - CreateRestoreTestingPlan
+      - GetRestoreTestingPlan
+      - UpdateRestoreTestingPlan
+      - DeleteRestoreTestingPlan
+      - ListRestoreTestingPlans
+      - CreateRestoreTestingSelection
+      - GetRestoreTestingSelection
+      - UpdateRestoreTestingSelection
+      - DeleteRestoreTestingSelection
+      - ListRestoreTestingSelections
+      - GetRestoreTestingInferredMetadata
+      - PutRestoreValidationResult
+    tags:
+      - Restore Testing
+      - Compliance
+      - Validation
+
+  - id: manage-legal-holds
+    name: Manage Legal Holds
+    description: >-
+      Create and cancel legal holds to preserve recovery points from
+      deletion during legal or compliance investigations.
+    operations:
+      - CreateLegalHold
+      - GetLegalHold
+      - CancelLegalHold
+      - ListLegalHolds
+      - ListRecoveryPointsByLegalHold
+    tags:
+      - Legal Hold
+      - Compliance
+      - Governance
+
+  - id: manage-tags
+    name: Manage Tags
+    description: >-
+      Apply and remove metadata tags on backup resources for cost
+      allocation and governance.
+    operations:
+      - TagResource
+      - UntagResource
+      - ListTags
+    tags:
+      - Tags
+      - Governance
+
+compositions:
+  - id: automated-backup-workflow
+    name: Automated Backup Workflow
+    description: >-
+      End-to-end workflow for setting up automated backups: create a vault,
+      create a backup plan with schedule and lifecycle, assign resources,
+      and monitor backup jobs.
+    steps:
+      - capability: manage-backup-vaults
+        operation: CreateBackupVault
+      - capability: manage-backup-plans
+        operation: CreateBackupPlan
+      - capability: manage-backup-selections
+        operation: CreateBackupSelection
+      - capability: run-backup-jobs
+        operation: ListBackupJobs
+    tags:
+      - Automation
+      - Workflow
+      - Backup
+
+  - id: disaster-recovery-workflow
+    name: Disaster Recovery Workflow
+    description: >-
+      Workflow for cross-region disaster recovery: start backup, copy
+      recovery point to secondary region, and restore from the copy.
+    steps:
+      - capability: run-backup-jobs
+        operation: StartBackupJob
+      - capability: run-copy-jobs
+        operation: StartCopyJob
+      - capability: run-restore-jobs
+        operation: StartRestoreJob
+    tags:
+      - Disaster Recovery
+      - Cross-Region
+      - Workflow

@@ -1,0 +1,125 @@
+vocabulary:
+  domain: AWS Backup
+  description: >-
+    Taxonomy and vocabulary for AWS Backup covering backup plans, vaults,
+    recovery points, jobs, compliance, and data protection concepts.
+
+  concepts:
+    - term: Backup Plan
+      definition: >-
+        A policy document that defines when and how AWS resources are backed
+        up. Contains one or more backup rules specifying the schedule,
+        vault, lifecycle, and copy actions.
+
+    - term: Backup Rule
+      definition: >-
+        A component of a backup plan that specifies the backup schedule
+        (cron expression), target vault, start and completion windows,
+        lifecycle policy, and optional cross-region copy actions.
+
+    - term: Backup Vault
+      definition: >-
+        A logical container used to store and organize backup recovery points.
+        Can be encrypted with AWS KMS and optionally locked with Vault Lock
+        for WORM compliance.
+
+    - term: Recovery Point
+      definition: >-
+        A snapshot or point-in-time backup of an AWS resource created by a
+        backup job. Can be restored to recover the original resource.
+
+    - term: Backup Job
+      definition: >-
+        An asynchronous operation that creates a recovery point from an AWS
+        resource. Can be started manually or automatically by a backup plan.
+
+    - term: Restore Job
+      definition: >-
+        An asynchronous operation that creates a new AWS resource from an
+        existing recovery point.
+
+    - term: Copy Job
+      definition: >-
+        An asynchronous operation that copies a recovery point from one
+        backup vault to another, enabling cross-region or cross-account
+        disaster recovery.
+
+    - term: Backup Selection
+      definition: >-
+        Defines the set of AWS resources to include in a backup plan, either
+        by specifying resource ARNs or by using tag-based selection rules.
+
+    - term: Vault Lock
+      definition: >-
+        A feature that enforces a write-once-read-many (WORM) model on a
+        backup vault, preventing deletion or modification of recovery points
+        and their retention periods.
+
+    - term: Legal Hold
+      definition: >-
+        A preservation action that prevents specific recovery points from
+        being deleted, used during legal discovery or compliance investigations.
+
+    - term: Framework
+      definition: >-
+        A compliance governance construct that defines controls and evaluates
+        backup configurations against organizational policies.
+
+    - term: Report Plan
+      definition: >-
+        Defines automated backup compliance and operational reports delivered
+        to an Amazon S3 bucket on a scheduled basis.
+
+    - term: Restore Testing Plan
+      definition: >-
+        Defines periodic automated restore tests to validate that backups can
+        be successfully recovered, ensuring backup recoverability.
+
+    - term: Lifecycle Policy
+      definition: >-
+        Defines how long recovery points are retained in warm storage before
+        transitioning to cold storage, and when they are deleted.
+
+    - term: Warm Storage
+      definition: >-
+        Standard backup storage tier that supports all recovery operations
+        at normal speeds. Higher cost than cold storage.
+
+    - term: Cold Storage
+      definition: >-
+        Low-cost archival storage tier for recovery points that are accessed
+        infrequently. Minimum 90-day retention required.
+
+    - term: Continuous Backup
+      definition: >-
+        Point-in-time recovery (PITR) capability supported for services like
+        Amazon RDS and DynamoDB, allowing restore to any second within the
+        retention period.
+
+  supported-resources:
+    - Amazon EBS
+    - Amazon EC2
+    - Amazon RDS
+    - Amazon Aurora
+    - Amazon DynamoDB
+    - Amazon EFS
+    - Amazon FSx
+    - Amazon S3
+    - AWS Storage Gateway
+    - Amazon DocumentDB
+    - Amazon Neptune
+    - Amazon Timestream
+    - AWS CloudFormation
+    - VMware Cloud on AWS
+
+  tags:
+    - Backup
+    - Data Protection
+    - Disaster Recovery
+    - Compliance
+    - Governance
+    - AWS
+    - Amazon Web Services
+    - Storage
+    - Recovery
+    - Business Continuity
