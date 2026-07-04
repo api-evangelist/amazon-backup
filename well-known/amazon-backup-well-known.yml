@@ -1,0 +1,23 @@
+generated: '2026-06-20'
+method: searched
+source: probed /.well-known/ on base host and corporate host
+hosts:
+  - host: https://backup.us-east-1.amazonaws.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+  - host: https://aws.amazon.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        file: amazon-backup-security.txt
+      - path: /.well-known/ai-plugin.json
+        status: 404
+documents:
+  - path: https://aws.amazon.com/.well-known/security.txt
+    status: 200
+    file: amazon-backup-security.txt

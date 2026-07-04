@@ -13,7 +13,7 @@ description: >-
   management, cross-region copy, Vault Lock for WORM compliance, legal holds,
   compliance frameworks, and automated restore testing.
 created: '2024-01-15'
-modified: '2026-04-19'
+modified: '2026-06-20'
 tags:
   - AWS
   - Backup
@@ -82,6 +82,20 @@ apis:
         url: https://docs.aws.amazon.com/cli/latest/reference/backup/
       - type: Security
         url: https://docs.aws.amazon.com/aws-backup/latest/devguide/security.html
+      - type: Packages
+        url: packages/amazon-backup-packages.yml
+      - type: LLMsTxt
+        url: llms/amazon-backup-llms.txt
+      - type: MCPServer
+        url: mcp/amazon-backup-mcp.yml
+      - type: Overlay
+        url: overlays/amazon-backup-openapi-overlay.yaml
+      - type: Conformance
+        url: conformance/amazon-backup-conformance.yml
+      - type: ErrorCatalog
+        url: errors/amazon-backup-problem-types.yml
+      - type: Lifecycle
+        url: lifecycle/amazon-backup-lifecycle.yml
     contact:
       - FN: Amazon Web Services
         url: https://aws.amazon.com/contact-us/
@@ -189,6 +203,10 @@ common:
     url: https://docs.aws.amazon.com/aws-backup/latest/devguide/security.html
   - type: Compliance
     url: https://aws.amazon.com/compliance/
+  - type: WellKnown
+    url: well-known/amazon-backup-well-known.yml
+  - type: SecurityTxt
+    url: well-known/amazon-backup-security.txt
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

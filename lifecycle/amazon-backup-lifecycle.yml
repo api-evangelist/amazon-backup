@@ -1,0 +1,23 @@
+generated: '2026-06-20'
+method: searched
+source: >-
+  https://docs.aws.amazon.com/aws-backup/latest/devguide/ ,
+  https://aws.amazon.com/backup/sla/ , https://health.aws.amazon.com/health/status
+versioning:
+  scheme: api-version-date
+  current: '2018-11-15'
+  docs: https://docs.aws.amazon.com/aws-backup/latest/APIReference/
+  notes: >-
+    AWS Backup uses a dated API version (2018-11-15). AWS services are versioned
+    via the API version identifier and new capabilities are added additively.
+deprecation:
+  policy_url: https://docs.aws.amazon.com/aws-backup/latest/devguide/doc-history.html
+  sunset_header: false
+  notes: >-
+    AWS communicates deprecations and changes through the Document history page
+    and service announcements rather than RFC 8594 Sunset/Deprecation headers.
+sla:
+  url: https://aws.amazon.com/backup/sla/
+  uptime_target: "99.9%"
+status_page: https://health.aws.amazon.com/health/status
+deprecated_operations: []

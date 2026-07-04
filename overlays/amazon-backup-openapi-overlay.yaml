@@ -1,0 +1,30 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Amazon Backup API
+  version: 1.0.0
+extends: openapi/amazon-backup-openapi.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-slug: amazon-backup
+      x-apievangelist-provider: Amazon Web Services
+      x-apievangelist-tags:
+        - AWS
+        - Backup
+        - Data Protection
+        - Disaster Recovery
+        - Compliance
+  - target: $.info
+    update:
+      x-apievangelist-artifacts:
+        packages: packages/amazon-backup-packages.yml
+        llms: llms/amazon-backup-llms.txt
+        conformance: conformance/amazon-backup-conformance.yml
+        errors: errors/amazon-backup-problem-types.yml
+        lifecycle: lifecycle/amazon-backup-lifecycle.yml
+        mcp: mcp/amazon-backup-mcp.yml
+  - target: $.servers
+    update:
+      - x-apievangelist-note: >-
+          Regional endpoint templated on {region}; AWS SigV4 request signing is
+          required on every call.

@@ -1,0 +1,235 @@
+# AWS Backup Developer Guide
+
+> Provides a conceptual overview of AWS Backup, detailed instructions for using the various features, and a complete API reference for developers.
+
+- [Getting started](https://docs.aws.amazon.com/aws-backup/latest/devguide/getting-started.md)
+- [Manage multiple accounts with AWS Organizations](https://docs.aws.amazon.com/aws-backup/latest/devguide/manage-cross-account.md)
+- [AWS Backup and CloudFormation](https://docs.aws.amazon.com/aws-backup/latest/devguide/integrate-cloudformation-with-aws-backup.md)
+- [Network](https://docs.aws.amazon.com/aws-backup/latest/devguide/backup-network.md)
+- [Quotas](https://docs.aws.amazon.com/aws-backup/latest/devguide/aws-backup-limits.md)
+- [Troubleshooting AWS Backup](https://docs.aws.amazon.com/aws-backup/latest/devguide/troubleshooting.md)
+- [AWS Backup API](https://docs.aws.amazon.com/aws-backup/latest/devguide/api-reference.md)
+- [Document history](https://docs.aws.amazon.com/aws-backup/latest/devguide/doc-history.md)
+
+## [What is AWS Backup?](https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.md)
+
+- [AWS Backup feature availability](https://docs.aws.amazon.com/aws-backup/latest/devguide/backup-feature-availability.md): AWS Backup features and Regional availability.
+
+
+## [How it works](https://docs.aws.amazon.com/aws-backup/latest/devguide/how-it-works.md)
+
+- [Working with supported AWS services](https://docs.aws.amazon.com/aws-backup/latest/devguide/working-with-supported-services.md): Configure AWS Backup to work with other AWS services to back up your data.
+- [Metering, costs, and billing](https://docs.aws.amazon.com/aws-backup/latest/devguide/metering-and-billing.md)
+- [Blogs, videos, tutorials, and other resources](https://docs.aws.amazon.com/aws-backup/latest/devguide/blogs-videos.md): For more information about AWS Backup, see the following:
+
+
+## [Backup plans](https://docs.aws.amazon.com/aws-backup/latest/devguide/about-backup-plans.md)
+
+### [Create a backup plan](https://docs.aws.amazon.com/aws-backup/latest/devguide/creating-a-backup-plan.md)
+
+Create a backup plan in AWS Backup by starting from an existing plan or building a new plan.
+
+- [Backup plan options and configuration](https://docs.aws.amazon.com/aws-backup/latest/devguide/plan-options-and-configuration.md): When you define a backup plan in the AWS Backup console, you configure the following options:
+- [CloudFormation templates for backup plans](https://docs.aws.amazon.com/aws-backup/latest/devguide/plan-cfn.md): We provide three sample CloudFormation templates for your reference.
+- [Delete a backup plan](https://docs.aws.amazon.com/aws-backup/latest/devguide/deleting-a-backup-plan.md): Delete a backup plan in AWS Backup using the AWS Management Console.
+- [Update a backup plan](https://docs.aws.amazon.com/aws-backup/latest/devguide/updating-a-backup-plan.md): Edit a backup plan in AWS Backup using the AWS Management Console.
+- [Understanding backup plan summary](https://docs.aws.amazon.com/aws-backup/latest/devguide/understanding-backup-plan-summaries.md): Use backup plan summaries to validate and understand your backup plan configurations, including scheduled runs, resource assignments, and feature compatibility.
+
+### [Opt in and assign resources](https://docs.aws.amazon.com/aws-backup/latest/devguide/assigning-resources.md)
+
+Automatically back up your resources by assigning them to a backup plan in AWS Backup.
+
+- [Assign resources through console](https://docs.aws.amazon.com/aws-backup/latest/devguide/assigning-resources-console.md)
+- [Assign resources with AWS CLI](https://docs.aws.amazon.com/aws-backup/latest/devguide/assigning-resources-json.md)
+- [Assign resources with CloudFormation](https://docs.aws.amazon.com/aws-backup/latest/devguide/assigning-resources-cfn.md): This end-to-end CloudFormation template creates a resource assignment, a backup plan, and a destination backup vault:
+
+
+## [Backup vaults](https://docs.aws.amazon.com/aws-backup/latest/devguide/vaults.md)
+
+- [Backup vault creation and deletion](https://docs.aws.amazon.com/aws-backup/latest/devguide/create-a-vault.md): Create backup vaults to manage and organize backups.
+
+### [Logically air-gapped vault](https://docs.aws.amazon.com/aws-backup/latest/devguide/logicallyairgappedvault.md)
+
+Details logically air-gapped vault, a secondary type of vault which can store copies of backups in other vaults.
+
+- [Primary backups to logically air-gapped vaults](https://docs.aws.amazon.com/aws-backup/latest/devguide/lag-vault-primary-backup.md): Use primary backups to logically air-gapped vaults to eliminate the need for separate copies in both standard and logically air-gapped vaults, reducing costs while preserving security benefits.
+
+### [Multi-party approval for logically air-gapped vaults](https://docs.aws.amazon.com/aws-backup/latest/devguide/multipartyapproval.md)
+
+This section contains information on the integration of AWS Backup logically air-gapped vaults and AWS Organizations Multi-party approval capability.
+
+- [Administrator tasks](https://docs.aws.amazon.com/aws-backup/latest/devguide/multipartyapproval-tasks-administrator.md): Several tasks involving AWS Backup and Multi-party overview required a user with admin permissions and access to the management account.
+- [Requester tasks](https://docs.aws.amazon.com/aws-backup/latest/devguide/multipartyapproval-tasks-requester.md)
+- [Approver tasks](https://docs.aws.amazon.com/aws-backup/latest/devguide/multipartyapproval-tasks-approver.md): A user who is a member of a Multi-party approval team can approve or deny requests that are part of a session.
+- [Vault access policies](https://docs.aws.amazon.com/aws-backup/latest/devguide/create-a-vault-access-policy.md): Set access policies for an AWS Backup vault and resources stored in vaults.
+- [Vault Lock](https://docs.aws.amazon.com/aws-backup/latest/devguide/vault-lock.md): A vault lock set in compliance or governance mode can add additional security to your vault and the backups within it.
+
+
+## [Backup creation, maintenance, and restore](https://docs.aws.amazon.com/aws-backup/latest/devguide/recovery-points.md)
+
+- [On-demand backups](https://docs.aws.amazon.com/aws-backup/latest/devguide/recov-point-create-on-demand-backup.md): Create an on-demand backup
+
+### [Continuous backups and PITR](https://docs.aws.amazon.com/aws-backup/latest/devguide/point-in-time-recovery.md)
+
+For some resources, AWS Backup supports continuous backups and point-in-time recovery (PITR) in addition to snapshot backups.
+
+- [Finding a continuous backup](https://docs.aws.amazon.com/aws-backup/latest/devguide/point-in-time-recovery-finding.md): You can use the AWS Backup console to find your continuous backup.
+- [Restoring a continuous backup](https://docs.aws.amazon.com/aws-backup/latest/devguide/point-in-time-recovery-restoring.md)
+- [Stopping or deleting continuous backups](https://docs.aws.amazon.com/aws-backup/latest/devguide/point-in-time-recovery-stopping.md): You can stop the creation of continuous backups or you can delete specific backups (point-in-time-recovery or PITR points).
+- [Copying continuous backups](https://docs.aws.amazon.com/aws-backup/latest/devguide/point-in-time-recovery-copying.md): If a continuous backup rule also specifies a cross-account or cross-Region copy and AWS Backup supports the operation for the resource type, AWS Backup takes a snapshot of the resource and copies the snapshot to the destination vault.
+- [Changing your retention period](https://docs.aws.amazon.com/aws-backup/latest/devguide/point-in-time-recovery-retention-period.md): You must use your backup plan to increase or decrease the retention period for your existing continuous backup rule.
+- [Removing the only continuous backup rule from a backup plan](https://docs.aws.amazon.com/aws-backup/latest/devguide/point-in-time-recovery-removing_rule.md): When you create a backup plan with a continuous backup rule and then you remove that rule, AWS Backup remembers the retention period from your now-deleted rule.
+
+### [Backup creation by resource type](https://docs.aws.amazon.com/aws-backup/latest/devguide/creating-a-backup.md)
+
+Create a backup automatically or manually in AWS Backup.
+
+- [CloudFormation stack backups](https://docs.aws.amazon.com/aws-backup/latest/devguide/applicationstackbackups.md): How to backup up CloudFormation stack backups
+- [Amazon Aurora DSQL backups](https://docs.aws.amazon.com/aws-backup/latest/devguide/backup-aurora.md): Backup Aurora and Aurora DSQL clusters
+- [Advanced DynamoDB backup](https://docs.aws.amazon.com/aws-backup/latest/devguide/advanced-ddb-backup.md): Understand and enable DynamoDB backups using AWS Backup advanced features.
+- [Amazon EBS backups](https://docs.aws.amazon.com/aws-backup/latest/devguide/multi-volume-crash-consistent.md): Learn about Amazon EBS snapshots and AWS Backup.
+- [Amazon RDS backups](https://docs.aws.amazon.com/aws-backup/latest/devguide/rds-backup.md): Understand and use Amazon RDS backups.
+- [Amazon Redshift backups](https://docs.aws.amazon.com/aws-backup/latest/devguide/redshift-backups.md): AWS Backup offers backup functionality for Amazon Redshift.
+- [Amazon Redshift Serverless backups](https://docs.aws.amazon.com/aws-backup/latest/devguide/redshift-serverless-backups.md): Learn how to back up Amazon Redshift Serverless namespaces using AWS Backup.
+- [Amazon EKS](https://docs.aws.amazon.com/aws-backup/latest/devguide/eks-backups.md): An Amazon Elastic Kubernetes Service (Amazon EKS) cluster consists of multiple resources that you can back up as a single unit.
+- [SAP HANA backup on Amazon EC2](https://docs.aws.amazon.com/aws-backup/latest/devguide/backup-saphana.md): SAP HANA backup on Amazon EC2
+- [Amazon S3 backups](https://docs.aws.amazon.com/aws-backup/latest/devguide/s3-backups.md): AWS Backup supports centralized backup and restore of applications storing data in S3.
+- [Amazon Timestream backups](https://docs.aws.amazon.com/aws-backup/latest/devguide/timestream-backup.md): AWS Backup offers backup functionality for Amazon Timestream.
+
+### [Virtual machine backups](https://docs.aws.amazon.com/aws-backup/latest/devguide/vm-backups.md)
+
+VMware virtual machine backups.
+
+- [Backup gateway configuration](https://docs.aws.amazon.com/aws-backup/latest/devguide/configure-infrastructure-bgw.md): Learn how to configure your infrastructure to use Backup gateway
+- [Working with gateways](https://docs.aws.amazon.com/aws-backup/latest/devguide/working-with-gateways.md): Learn about Backup gateway
+- [Working with hypervisors](https://docs.aws.amazon.com/aws-backup/latest/devguide/working-with-hypervisors.md): Learn about hypervisors
+- [Backing up virtual machines](https://docs.aws.amazon.com/aws-backup/latest/devguide/backing-up-vms.md): Learn about backing up virtual machines
+- [Third-party source components](https://docs.aws.amazon.com/aws-backup/latest/devguide/bgw-third-party-source.md): Learn about the third-party source components for Backup gateway
+- [Troubleshoot VM issues](https://docs.aws.amazon.com/aws-backup/latest/devguide/vm-troubleshooting.md): Troubleshoot VM issues for AWS Backup.
+- [Create Windows VSS backups](https://docs.aws.amazon.com/aws-backup/latest/devguide/windows-backups.md): Create application-specific Windows backups on Amazon EC2 using AWS Backup.
+
+### [Backup and tag copy](https://docs.aws.amazon.com/aws-backup/latest/devguide/recov-point-create-a-copy.md)
+
+Copy a backup using AWS Backup.
+
+- [Cross-Region backup](https://docs.aws.amazon.com/aws-backup/latest/devguide/cross-region-backup.md): Create a backup copy across Regions using AWS Backup.
+- [Cross-account backup](https://docs.aws.amazon.com/aws-backup/latest/devguide/create-cross-account-backup.md): Create a backup copy across AWS accounts using AWS Backup.
+- [Copy tags onto backups](https://docs.aws.amazon.com/aws-backup/latest/devguide/tags-on-backups.md): You can copy tags from your source resources to your backups (recovery points).
+- [Add or remove tags on existing recovery points](https://docs.aws.amazon.com/aws-backup/latest/devguide/tagging-recovery-points.md): Add, modify, or remove tags on existing recovery points (backups) in AWS Backup.
+- [Backup deletion](https://docs.aws.amazon.com/aws-backup/latest/devguide/deleting-backups.md): Delete one or more backups in AWS Backup automatically using lifecycle rules or manually using the console.
+- [Backup and tag edits](https://docs.aws.amazon.com/aws-backup/latest/devguide/editing-a-backup.md): Edit the tags or lifecycle of a backup job after it is created in AWS Backup.
+- [Backup search](https://docs.aws.amazon.com/aws-backup/latest/devguide/backup-search.md): This page discusses backup search and backup index topics and procedures.
+- [Backup tiering](https://docs.aws.amazon.com/aws-backup/latest/devguide/backup-tiering.md): Create tiering configurations to move backups to a lower cost storage tier.
+
+### [Restore by resource type](https://docs.aws.amazon.com/aws-backup/latest/devguide/restoring-a-backup.md)
+
+Restore a backup in AWS Backup using the console, AWS CLI, or API.
+
+- [Aurora restore](https://docs.aws.amazon.com/aws-backup/latest/devguide/restoring-aur.md): Aurora cluster restore
+- [Aurora DSQL restore](https://docs.aws.amazon.com/aws-backup/latest/devguide/restore-auroradsql.md): Restore Aurora DSQL cluster recovery points
+- [CloudFormation restore](https://docs.aws.amazon.com/aws-backup/latest/devguide/restore-application-stacks.md): A CloudFormation composite backup is a combination of a CloudFormation template and all associated nested recovery points.
+- [DocumentDB restore](https://docs.aws.amazon.com/aws-backup/latest/devguide/restoring-docdb.md): Restore a Amazon DocumentDB cluster.
+- [DynamoDB restore](https://docs.aws.amazon.com/aws-backup/latest/devguide/restoring-dynamodb.md): Restore Amazon DynamoDB
+- [EBS restore](https://docs.aws.amazon.com/aws-backup/latest/devguide/restoring-ebs.md): Restore an Amazon EBS volume.
+- [EC2 restore](https://docs.aws.amazon.com/aws-backup/latest/devguide/restoring-ec2.md): Restore an Amazon EC2 instance.
+- [EFS restore](https://docs.aws.amazon.com/aws-backup/latest/devguide/restoring-efs.md): Restore an Amazon EFS file system by performing a full restore or an item-level restore in AWS Backup.
+- [EKS restore](https://docs.aws.amazon.com/aws-backup/latest/devguide/restoring-eks.md): Restore an Amazon EKS cluster.
+- [FSx restore](https://docs.aws.amazon.com/aws-backup/latest/devguide/restoring-fsx.md): Restore an Amazon FSx file system.
+- [Neptune restore](https://docs.aws.amazon.com/aws-backup/latest/devguide/restoring-nep.md): Restore a Amazon Neptune cluster.
+- [RDS restore](https://docs.aws.amazon.com/aws-backup/latest/devguide/restoring-rds.md): Restore an Amazon RDS database.
+- [Redshift restore](https://docs.aws.amazon.com/aws-backup/latest/devguide/redshift-restores.md): Restore an Amazon Redshift cluster
+- [Redshift Serverless restore](https://docs.aws.amazon.com/aws-backup/latest/devguide/redshift-serverless-restore.md): Learn how to restore manual snapshots of databases or tables from Amazon Redshift Serverless using AWS Backup.
+- [SAP HANA restore](https://docs.aws.amazon.com/aws-backup/latest/devguide/saphana-restore.md): Restore an SAP HANA database on an Amazon EC2 instance
+- [S3 restore](https://docs.aws.amazon.com/aws-backup/latest/devguide/restoring-s3.md): Amazon S3 bucket restore
+- [Storage Gateway restore](https://docs.aws.amazon.com/aws-backup/latest/devguide/restoring-storage-gateway.md): Restore an AWS Storage Gateway volume
+- [Timestream restore](https://docs.aws.amazon.com/aws-backup/latest/devguide/timestream-restore.md): Restore a Amazon Timestream table
+- [VM restore](https://docs.aws.amazon.com/aws-backup/latest/devguide/restoring-vm.md): Restore a virtual machine
+
+### [Restore testing](https://docs.aws.amazon.com/aws-backup/latest/devguide/restore-testing.md)
+
+Restore testing, a feature offered by AWS Backup, provides automated and periodic evaluation of restore viability, as well as the ability to monitor restore job duration times.
+
+- [Inferred metadata](https://docs.aws.amazon.com/aws-backup/latest/devguide/restore-testing-inferred-metadata.md): Restoring a recovery point requires restore metadata.
+- [Restore testing validation](https://docs.aws.amazon.com/aws-backup/latest/devguide/restore-testing-validation.md): You have the option of creating an event-driven validation that runs when a restore testing job completes.
+- [Stop a backup job](https://docs.aws.amazon.com/aws-backup/latest/devguide/stopping-a-backup-job.md): Stop a backup job after it has started in AWS Backup.
+- [View existing backups](https://docs.aws.amazon.com/aws-backup/latest/devguide/listing-backups.md): You can view a list of your backups using the AWS Backup console or programmatically.
+
+
+## [AWS Backup Audit Manager](https://docs.aws.amazon.com/aws-backup/latest/devguide/aws-backup-audit-manager.md)
+
+### [Working with audit frameworks](https://docs.aws.amazon.com/aws-backup/latest/devguide/working-with-audit-frameworks.md)
+
+Learn how to work with AWS Backup Audit Manager frameworks, controls, and parameters.
+
+- [Choosing your controls](https://docs.aws.amazon.com/aws-backup/latest/devguide/choosing-controls.md): Choose controls for your AWS Backup Audit Manager audit frameworks.
+- [Turning on resource tracking](https://docs.aws.amazon.com/aws-backup/latest/devguide/turning-on-resource-tracking.md): Turn on resource tracking to use your AWS Backup Audit Manager audit frameworks.
+- [Creating frameworks using the AWS Backup console](https://docs.aws.amazon.com/aws-backup/latest/devguide/creating-frameworks-console.md): Create AWS Backup Audit Manager frameworks using the AWS Backup console.
+- [Creating frameworks using the AWS Backup API](https://docs.aws.amazon.com/aws-backup/latest/devguide/creating-frameworks-api.md): Create AWS Backup Audit Manager frameworks using the AWS Backup API.
+- [Viewing framework compliance status](https://docs.aws.amazon.com/aws-backup/latest/devguide/viewing-frameworks.md): View AWS Backup Audit Manager framework compliance status.
+- [Finding non-compliant resources](https://docs.aws.amazon.com/aws-backup/latest/devguide/finding-non-compliant-resources.md): Find resources that are not yet compliant with AWS Backup Audit Manager frameworks.
+- [Updating audit frameworks](https://docs.aws.amazon.com/aws-backup/latest/devguide/updating-frameworks.md): Update AWS Backup Audit Manager frameworks.
+- [Deleting audit frameworks](https://docs.aws.amazon.com/aws-backup/latest/devguide/deleting-frameworks.md): Delete AWS Backup Audit Manager frameworks.
+
+### [Working with audit reports](https://docs.aws.amazon.com/aws-backup/latest/devguide/working-with-audit-reports.md)
+
+Work with AWS Backup Audit Manager reports.
+
+- [Choosing your report template](https://docs.aws.amazon.com/aws-backup/latest/devguide/choosing-report-template.md): Choose the right report template for your AWS Backup Audit Manager reports.
+- [Creating report plans](https://docs.aws.amazon.com/aws-backup/latest/devguide/create-report-plan-console.md): Create a report plan for your AWS Backup Audit Manager reports using the AWS Backup console.
+- [Creating report plans using the AWS Backup API](https://docs.aws.amazon.com/aws-backup/latest/devguide/create-report-plan-api.md): Create a report plan for your AWS Backup Audit Manager reports using the AWS Backup API.
+- [Creating on-demand reports](https://docs.aws.amazon.com/aws-backup/latest/devguide/create-on-demand-reports.md): Create AWS Backup Audit Manager reports on-demand.
+- [Viewing audit reports](https://docs.aws.amazon.com/aws-backup/latest/devguide/view-reports.md): View an AWS Backup Audit Manager report.
+- [Updating report plans](https://docs.aws.amazon.com/aws-backup/latest/devguide/update-report-plan.md): Update an AWS Backup Audit Manager report plan.
+- [Deleting report plans](https://docs.aws.amazon.com/aws-backup/latest/devguide/delete-report-plan.md): Delete an AWS Backup Audit Manager report plan.
+- [Using CloudFormation to deploy AWS Backup Audit Manager resources](https://docs.aws.amazon.com/aws-backup/latest/devguide/bam-cfn-integration.md): Deploy your AWS Backup Audit Manager frameworks and report plans using CloudFormation.
+- [Using AWS Backup Audit Manager with AWS Audit Manager](https://docs.aws.amazon.com/aws-backup/latest/devguide/aws-audit-manager-integration.md): Import your AWS Backup Audit Manager compliance findings to your AWS Audit Manager reports.
+- [Controls and remediation](https://docs.aws.amazon.com/aws-backup/latest/devguide/controls-and-remediation.md): View the list of available AWS Backup Audit Manager controls and guidance to remediate resources not yet in compliance with those controls.
+
+
+## [Security](https://docs.aws.amazon.com/aws-backup/latest/devguide/security-considerations.md)
+
+- [Compliance validation](https://docs.aws.amazon.com/aws-backup/latest/devguide/backup-compliance.md): Learn what AWS services are in scope of a specific compliance program.
+
+### [Data protection](https://docs.aws.amazon.com/aws-backup/latest/devguide/data-protection.md)
+
+Use and configure data protection in AWS Backup to meet the needs of your organization.
+
+- [Encryption for backups in AWS Backup](https://docs.aws.amazon.com/aws-backup/latest/devguide/encryption.md): Protect your backups by configuring encryption for various AWS services in AWS Backup.
+- [Virtual machine hypervisor credential encryption](https://docs.aws.amazon.com/aws-backup/latest/devguide/bgw-hypervisor-encryption-page.md): Virtual machines managed by a hypervisor use AWS Backup Gateway to connect on-premises systems to AWS Backup.
+
+### [Identity and access management](https://docs.aws.amazon.com/aws-backup/latest/devguide/backup-iam.md)
+
+Access to AWS Backup requires credentials.
+
+- [Authentication](https://docs.aws.amazon.com/aws-backup/latest/devguide/authentication.md): Overview of how to authenticate requests in AWS Backup.
+- [Access control](https://docs.aws.amazon.com/aws-backup/latest/devguide/access-control.md): Overview of how to control access to resources in AWS Backup, including an API permissions reference and information about using managed policies.
+- [IAM service roles](https://docs.aws.amazon.com/aws-backup/latest/devguide/iam-service-roles.md): Use IAM service roles to control access to backups and other resources in AWS Backup.
+- [Managed policies](https://docs.aws.amazon.com/aws-backup/latest/devguide/security-iam-awsmanpol.md): Learn about AWS managed policies for AWS Backup and recent changes to these policies.
+
+### [Using service-linked roles](https://docs.aws.amazon.com/aws-backup/latest/devguide/using-service-linked-roles.md)
+
+How to use service-linked roles to give AWS Backup access to resources in your AWS account.
+
+- [Backup and copy](https://docs.aws.amazon.com/aws-backup/latest/devguide/using-service-linked-roles-AWSServiceRoleForBackup.md): How to use service-linked roles to give AWS Backup access to resources in your AWS account.
+- [AWS Backup Audit Manager](https://docs.aws.amazon.com/aws-backup/latest/devguide/using-service-linked-roles-AWSServiceRoleForBackupReports.md): How to use service-linked roles to give AWS Backup access to resources in your AWS account.
+- [Restore testing](https://docs.aws.amazon.com/aws-backup/latest/devguide/using-service-linked-roles-AWSServiceRoleForBackupRestoreTesting.md): How to use service-linked roles to give AWS Backup access to resources in your AWS account.
+- [Cross-service confused deputy prevention](https://docs.aws.amazon.com/aws-backup/latest/devguide/cross-service-confused-deputy-prevention.md): The confused deputy problem is a security issue where an entity that doesn't have permission to perform an action can coerce a more-privileged entity to perform the action.
+- [Infrastructure security](https://docs.aws.amazon.com/aws-backup/latest/devguide/infrastructure-security.md): Learn how AWS Backup isolates service traffic.
+- [Integrity](https://docs.aws.amazon.com/aws-backup/latest/devguide/backup-integrity.md)
+- [Legal holds](https://docs.aws.amazon.com/aws-backup/latest/devguide/legalhold.md): Learn how to protect your backups from deletion using legal holds.
+
+### [Malware protection](https://docs.aws.amazon.com/aws-backup/latest/devguide/malware-protection.md)
+
+Protect your backups by scanning for malware using Amazon GuardDuty Malware Protection.
+
+- [Instant access](https://docs.aws.amazon.com/aws-backup/latest/devguide/backup-instant-access.md): Overview of Access Point Permissions
+- [Resilience](https://docs.aws.amazon.com/aws-backup/latest/devguide/disaster-recovery-resiliency.md): Learn how AWS architecture supports data redundancy in addition to specific AWS Backup features for data resiliency.
+
+
+## [Monitoring AWS Backup](https://docs.aws.amazon.com/aws-backup/latest/devguide/monitoring.md)
+
+- [Console dashboards](https://docs.aws.amazon.com/aws-backup/latest/devguide/backup-dashboards.md): AWS Backup provides dashboards in the AWS Backup console to help you monitor the health of your backup, copy, and restore jobs to identify issues and potential problems.
+- [Monitoring events using EventBridge](https://docs.aws.amazon.com/aws-backup/latest/devguide/eventbridge.md): Track changes in the AWS Backup environment using Amazon EventBridge events.
+- [AWS Backup metrics with Amazon CloudWatch](https://docs.aws.amazon.com/aws-backup/latest/devguide/cloudwatch.md): Learn about the metrics that AWS Backup sends to Amazon CloudWatch.
+- [Logging AWS Backup API calls with CloudTrail](https://docs.aws.amazon.com/aws-backup/latest/devguide/logging-using-cloudtrail.md): Capture detailed information about the logs and calls made to AWS Backup using AWS CloudTrail.
+- [Notification options with AWS Backup](https://docs.aws.amazon.com/aws-backup/latest/devguide/backup-notifications.md): Receive notifications about AWS Backup through AWS User Notifications and Amazon Simple Notification Service.

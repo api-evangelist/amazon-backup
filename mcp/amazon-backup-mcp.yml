@@ -1,0 +1,35 @@
+generated: '2026-06-20'
+method: derived
+status: candidate
+source: openapi/amazon-backup-openapi.yml
+notes: >-
+  No dedicated official hosted MCP server was found solely for AWS Backup. AWS
+  publishes MCP servers under github.com/awslabs/mcp (e.g. an AWS API MCP server
+  and service-specific servers) that can reach AWS Backup via the AWS SDK, but a
+  standalone AWS Backup MCP endpoint was not confirmed. The tool list below is a
+  candidate derived one-to-one from the OpenAPI operations.
+server:
+  name: amazon-backup
+  transport: stdio
+tools:
+  - name: list_backup_plans
+    description: List all active backup plans for an authenticated account.
+    source_operation: openapi/amazon-backup-openapi.yml#ListBackupPlans
+  - name: create_backup_plan
+    description: Create a backup plan from a name and backup rules.
+    source_operation: openapi/amazon-backup-openapi.yml#CreateBackupPlan
+  - name: get_backup_plan
+    description: Return the body and metadata of a backup plan.
+    source_operation: openapi/amazon-backup-openapi.yml#GetBackupPlan
+  - name: delete_backup_plan
+    description: Delete a backup plan.
+    source_operation: openapi/amazon-backup-openapi.yml#DeleteBackupPlan
+  - name: list_backup_vaults
+    description: List backup vaults.
+    source_operation: openapi/amazon-backup-openapi.yml#ListBackupVaults
+  - name: list_backup_jobs
+    description: List backup jobs.
+    source_operation: openapi/amazon-backup-openapi.yml#ListBackupJobs
+  - name: list_restore_jobs
+    description: List restore jobs.
+    source_operation: openapi/amazon-backup-openapi.yml#ListRestoreJobs

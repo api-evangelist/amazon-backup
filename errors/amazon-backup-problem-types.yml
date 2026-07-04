@@ -1,0 +1,55 @@
+generated: '2026-06-20'
+method: derived
+format: aws-json
+source: openapi/amazon-backup-openapi.yml
+notes: >-
+  Derived from the 4xx/5xx responses in the OpenAPI. AWS Backup returns AWS JSON
+  exception shapes (application/json with __type and Message), not RFC 9457
+  application/problem+json. Titles/remediation enriched from the AWS Backup API
+  Reference (https://docs.aws.amazon.com/aws-backup/latest/APIReference/CommonErrors.html).
+problems:
+  - status: 400
+    type: InvalidParameterValueException
+    title: Invalid parameter value
+    remediation: >-
+      A parameter has a value that is not valid. Check the request parameters
+      against the API reference and retry.
+    source_operations:
+      - openapi/amazon-backup-openapi.yml#ListBackupPlans
+      - openapi/amazon-backup-openapi.yml#CreateBackupPlan
+      - openapi/amazon-backup-openapi.yml#GetBackupPlan
+      - openapi/amazon-backup-openapi.yml#DeleteBackupPlan
+      - openapi/amazon-backup-openapi.yml#ListBackupVaults
+      - openapi/amazon-backup-openapi.yml#ListBackupJobs
+      - openapi/amazon-backup-openapi.yml#ListRestoreJobs
+  - status: 404
+    type: ResourceNotFoundException
+    title: Resource not found
+    remediation: >-
+      A required resource (e.g. the backup plan) does not exist. Verify the
+      identifier and that the resource has not been deleted.
+    source_operations:
+      - openapi/amazon-backup-openapi.yml#GetBackupPlan
+      - openapi/amazon-backup-openapi.yml#DeleteBackupPlan
+  - status: 429
+    type: LimitExceededException
+    title: Limit exceeded
+    remediation: >-
+      A request rate or resource limit was exceeded. Back off and retry with
+      exponential backoff, or request a service quota increase.
+    source_operations:
+      - openapi/amazon-backup-openapi.yml#ListBackupPlans
+  - status: 500
+    type: ServiceUnavailableException
+    title: Service unavailable
+    remediation: >-
+      The request failed due to a temporary failure of the server. Retry with
+      exponential backoff.
+    source_operations:
+      - openapi/amazon-backup-openapi.yml#ListBackupPlans
+      - openapi/amazon-backup-openapi.yml#CreateBackupPlan
+      - openapi/amazon-backup-openapi.yml#GetBackupPlan
+      - openapi/amazon-backup-openapi.yml#DeleteBackupPlan
+      - openapi/amazon-backup-openapi.yml#ListBackupVaults
+      - openapi/amazon-backup-openapi.yml#ListBackupJobs
+      - openapi/amazon-backup-openapi.yml#ListRestoreJobs

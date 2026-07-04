@@ -1,0 +1,55 @@
+generated: '2026-06-20'
+method: searched
+source: >-
+  https://docs.aws.amazon.com/aws-backup/latest/devguide/ and public package
+  registries (npm, PyPI, RubyGems, NuGet, pkg.go.dev, Maven Central)
+notes: >-
+  AWS Backup does not ship a dedicated single-purpose client library; it is
+  accessed through the first-party AWS SDKs (one service client per language)
+  and the AWS CLI. Entries below are the official AWS SDK service clients /
+  umbrella SDKs that expose the AWS Backup API.
+packages:
+  - language: javascript
+    registry: npm
+    name: "@aws-sdk/client-backup"
+    url: https://www.npmjs.com/package/@aws-sdk/client-backup
+    install: npm install @aws-sdk/client-backup
+    official: true
+  - language: python
+    registry: pypi
+    name: boto3
+    url: https://pypi.org/project/boto3/
+    install: pip install boto3
+    official: true
+    notes: AWS SDK for Python; exposes the "backup" service client.
+  - language: ruby
+    registry: rubygems
+    name: aws-sdk-backup
+    url: https://rubygems.org/gems/aws-sdk-backup
+    install: gem install aws-sdk-backup
+    official: true
+  - language: dotnet
+    registry: nuget
+    name: AWSSDK.Backup
+    url: https://www.nuget.org/packages/AWSSDK.Backup
+    install: dotnet add package AWSSDK.Backup
+    official: true
+  - language: go
+    registry: pkg.go.dev
+    name: github.com/aws/aws-sdk-go-v2/service/backup
+    url: https://pkg.go.dev/github.com/aws/aws-sdk-go-v2/service/backup
+    install: go get github.com/aws/aws-sdk-go-v2/service/backup
+    official: true
+  - language: java
+    registry: maven
+    name: software.amazon.awssdk:backup
+    url: https://central.sonatype.com/artifact/software.amazon.awssdk/backup
+    install: "implementation 'software.amazon.awssdk:backup'"
+    official: true
+  - language: cli
+    registry: pypi
+    name: awscli
+    url: https://pypi.org/project/awscli/
+    install: pip install awscli
+    official: true
+    notes: AWS CLI "aws backup" command group. See https://docs.aws.amazon.com/cli/latest/reference/backup/
