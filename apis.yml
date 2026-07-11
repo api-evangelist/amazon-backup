@@ -167,6 +167,12 @@ apis:
       - name: AWS KMS
         description: Encrypt backup vaults with customer-managed KMS keys
 common:
+  - type: TrustCenter
+    url: security/amazon-backup-trust-center.yml
+  - type: VulnerabilityDisclosure
+    url: security/amazon-backup-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/amazon-backup-domain-security.yml
   - type: Portal
     url: https://aws.amazon.com/
   - type: Website
