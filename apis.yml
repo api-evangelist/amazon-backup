@@ -167,6 +167,8 @@ apis:
       - name: AWS KMS
         description: Encrypt backup vaults with customer-managed KMS keys
 common:
+  - type: AgenticAccess
+    url: agentic-access/amazon-backup-agentic-access.yml
   - type: TrustCenter
     url: security/amazon-backup-trust-center.yml
   - type: VulnerabilityDisclosure
