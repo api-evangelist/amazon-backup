@@ -1,0 +1,102 @@
+openapi: 3.1.0
+info:
+  title: Amazon Backup Backup Jobs Restore Jobs API
+  description: AWS Backup is a fully managed backup service that makes it easy to centralize and automate the back up of data across AWS services. Using the AWS Backup API, you can create backup plans, manage backup vaults, start and monitor backup and restore jobs, and manage recovery points.
+  version: '2018-11-15'
+  contact:
+    name: Amazon Web Services
+    url: https://aws.amazon.com/contact-us/
+  termsOfService: https://aws.amazon.com/service-terms/
+servers:
+- url: https://backup.{region}.amazonaws.com
+  description: Amazon Backup Regional Endpoint
+  variables:
+    region:
+      default: us-east-1
+      description: AWS Region
+tags:
+- name: Restore Jobs
+  description: Operations for restoring backed-up resources
+paths:
+  /restore-jobs:
+    get:
+      operationId: ListRestoreJobs
+      summary: Amazon Backup List restore jobs
+      description: Returns a list of jobs that AWS Backup initiated to restore a saved resource, including details about the recovery process.
+      tags:
+      - Restore Jobs
+      parameters:
+      - name: maxResults
+        in: query
+        description: Maximum number of results to return.
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 1000
+      - name: nextToken
+        in: query
+        description: Token for pagination.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListRestoreJobsResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidParameterValueException'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceUnavailableException'
+components:
+  schemas:
+    InvalidParameterValueException:
+      type: object
+      properties:
+        Code:
+          type: string
+        Message:
+          type: string
+    ListRestoreJobsResponse:
+      type: object
+      properties:
+        restoreJobs:
+          type: array
+          items:
+            type: object
+            properties:
+              restoreJobId:
+                type: string
+              recoveryPointArn:
+                type: string
+              createdResourceArn:
+                type: string
+              status:
+                type: string
+              creationDate:
+                type: string
+                format: date-time
+              completionDate:
+                type: string
+                format: date-time
+        nextToken:
+          type: string
+    ServiceUnavailableException:
+      type: object
+      properties:
+        Code:
+          type: string
+        Message:
+          type: string
+externalDocs:
+  description: Amazon Backup API Reference
+  url: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_Reference.html
