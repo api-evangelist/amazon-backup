@@ -3,7 +3,18 @@ url: >-
   https://raw.githubusercontent.com/api-evangelist/amazon-backup/refs/heads/main/apis.yml
 name: Amazon Backup
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source: []
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/amazon-backup.png
 specificationVersion: '0.19'
 description: >-
   AWS Backup is a fully managed backup service that centralizes and automates
@@ -24,148 +35,222 @@ tags:
   - Governance
   - Business Continuity
 apis:
-  - aid: amazon-backup:amazon-backup-api
-    name: Amazon Backup API
-    description: >-
-      API for centrally managing and automating backups across AWS services
-      including Amazon EBS, Amazon RDS, Amazon DynamoDB, Amazon EFS, Amazon
-      FSx, Amazon EC2, and AWS Storage Gateway. Supports creating backup
-      plans, managing backup vaults, starting and monitoring backup jobs,
-      restoring resources, cross-region copy, legal holds, compliance
-      frameworks, and automated restore testing.
-    humanURL: https://aws.amazon.com/backup/
-    baseURL: https://backup.us-east-1.amazonaws.com
-    tags:
-      - AWS
-      - Backup
-      - Data Protection
-      - Disaster Recovery
-      - Storage
-      - Compliance
-    properties:
-      - type: Documentation
-        url: https://docs.aws.amazon.com/aws-backup/latest/devguide/
-      - type: OpenAPI
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-backup/refs/heads/main/openapi/amazon-backup-openapi.yml
-      - type: OpenAPI
-        url: https://api.apis.guru/v2/specs/amazonaws.com/backup/2018-11-15/openapi.yaml
-      - type: JSONSchema
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-backup/refs/heads/main/json-schema/amazon-backup-plan-schema.json
-      - type: JSONStructure
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-backup/refs/heads/main/json-structure/backup-resource-structure.json
-      - type: JSONLD
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-backup/refs/heads/main/json-ld/amazon-backup-context.jsonld
-      - type: SpectralRuleset
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-backup/refs/heads/main/spectral/ruleset.yml
-      - type: Capabilities
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-backup/refs/heads/main/capabilities/capabilities.yml
-      - type: Vocabulary
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-backup/refs/heads/main/vocabulary/vocabulary.yml
-      - type: Pricing
-        url: https://aws.amazon.com/backup/pricing/
-      - type: GettingStarted
-        url: https://aws.amazon.com/backup/getting-started/
-      - type: FAQ
-        url: https://aws.amazon.com/backup/faqs/
-      - type: UserGuide
-        url: https://docs.aws.amazon.com/aws-backup/latest/devguide/
-      - type: APIReference
-        url: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_Reference.html
-      - type: CLIReference
-        url: https://docs.aws.amazon.com/cli/latest/reference/backup/
-      - type: Security
-        url: https://docs.aws.amazon.com/aws-backup/latest/devguide/security.html
-      - type: Packages
-        url: packages/amazon-backup-packages.yml
-      - type: LLMsTxt
-        url: llms/amazon-backup-llms.txt
-      - type: MCPServer
-        url: mcp/amazon-backup-mcp.yml
-      - type: Overlay
-        url: overlays/amazon-backup-openapi-overlay.yaml
-      - type: Conformance
-        url: conformance/amazon-backup-conformance.yml
-      - type: ErrorCatalog
-        url: errors/amazon-backup-problem-types.yml
-      - type: Lifecycle
-        url: lifecycle/amazon-backup-lifecycle.yml
-    contact:
-      - FN: Amazon Web Services
-        url: https://aws.amazon.com/contact-us/
-    features:
-      - name: Automated Backup Scheduling
-        description: >-
-          Create backup plans with cron-based schedules to automatically back up
-          AWS resources on a defined cadence with configurable start and completion windows.
-      - name: Lifecycle Management
-        description: >-
-          Automatically transition recovery points from warm to cold storage and
-          delete them after configurable retention periods to optimize costs.
-      - name: Cross-Region Copy
-        description: >-
-          Copy recovery points to backup vaults in other AWS regions for
-          disaster recovery and geographic redundancy.
-      - name: Cross-Account Management
-        description: >-
-          Centrally manage backup policies across multiple AWS accounts within
-          an AWS Organizations structure.
-      - name: Vault Lock (WORM)
-        description: >-
-          Enforce write-once-read-many protection on backup vaults to prevent
-          deletion or modification of recovery points, supporting regulatory compliance.
-      - name: Legal Holds
-        description: >-
-          Preserve recovery points from deletion during legal discovery or
-          compliance investigations with legal hold policies.
-      - name: Compliance Frameworks
-        description: >-
-          Create compliance frameworks with controls that automatically evaluate
-          backup configurations against governance requirements.
-      - name: Automated Restore Testing
-        description: >-
-          Schedule periodic automated restore tests to validate backup
-          recoverability and generate compliance reports.
-      - name: Continuous Backup (PITR)
-        description: >-
-          Enable point-in-time recovery for supported services, allowing restore
-          to any second within the retention window.
-    useCases:
-      - name: Enterprise Backup Automation
-        description: >-
-          Automate backup policies across all AWS resources with tag-based
-          selection rules and centralized management.
-      - name: Regulatory Compliance
-        description: >-
-          Meet compliance requirements for data retention with Vault Lock,
-          compliance frameworks, and automated reporting.
-      - name: Disaster Recovery
-        description: >-
-          Replicate backups cross-region and validate restore procedures
-          with automated restore testing plans.
-      - name: Legal Hold Management
-        description: >-
-          Preserve backup data during legal proceedings or investigations
-          with automated legal hold policies.
-    integrations:
-      - name: Amazon CloudWatch
-        description: Monitor backup metrics and create alarms for backup failures
-      - name: Amazon EventBridge
-        description: React to backup events with event-driven workflows
-      - name: AWS CloudTrail
-        description: Audit backup activity with consolidated CloudTrail logs
-      - name: Amazon SNS
-        description: Receive backup event notifications via Amazon Simple Notification Service
-      - name: AWS Organizations
-        description: Apply backup policies centrally across organization accounts
-      - name: AWS KMS
-        description: Encrypt backup vaults with customer-managed KMS keys
+- aid: amazon-backup:amazon-backup-backup-jobs-api
+  name: Amazon Backup Backup Jobs API
+  description: Operations for starting and monitoring backup jobs
+  humanURL: https://aws.amazon.com/backup/
+  baseURL: https://backup.us-east-1.amazonaws.com
+  tags:
+  - Backup Jobs
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-backup-backup-jobs-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/aws-backup/latest/devguide/
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/amazon-backup/refs/heads/main/json-schema/amazon-backup-plan-schema.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/amazon-backup/refs/heads/main/json-structure/backup-resource-structure.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/amazon-backup/refs/heads/main/json-ld/amazon-backup-context.jsonld
+  - type: SpectralRuleset
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/amazon-backup/refs/heads/main/spectral/ruleset.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/amazon-backup/refs/heads/main/capabilities/capabilities.yml
+  - type: Vocabulary
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/amazon-backup/refs/heads/main/vocabulary/vocabulary.yml
+  - type: Pricing
+    url: https://aws.amazon.com/backup/pricing/
+  - type: GettingStarted
+    url: https://aws.amazon.com/backup/getting-started/
+  - type: FAQ
+    url: https://aws.amazon.com/backup/faqs/
+  - type: UserGuide
+    url: https://docs.aws.amazon.com/aws-backup/latest/devguide/
+  - type: APIReference
+    url: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_Reference.html
+  - type: CLIReference
+    url: https://docs.aws.amazon.com/cli/latest/reference/backup/
+  - type: Security
+    url: https://docs.aws.amazon.com/aws-backup/latest/devguide/security.html
+  - type: Packages
+    url: packages/amazon-backup-packages.yml
+  - type: LLMsTxt
+    url: llms/amazon-backup-llms.txt
+  - type: Conformance
+    url: conformance/amazon-backup-conformance.yml
+  - type: ErrorCatalog
+    url: errors/amazon-backup-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/amazon-backup-lifecycle.yml
+- aid: amazon-backup:amazon-backup-backup-plans-api
+  name: Amazon Backup Backup Plans API
+  description: Operations for creating and managing backup plans
+  humanURL: https://aws.amazon.com/backup/
+  baseURL: https://backup.us-east-1.amazonaws.com
+  tags:
+  - Backup Plans
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-backup-backup-plans-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/aws-backup/latest/devguide/
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/amazon-backup/refs/heads/main/json-schema/amazon-backup-plan-schema.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/amazon-backup/refs/heads/main/json-structure/backup-resource-structure.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/amazon-backup/refs/heads/main/json-ld/amazon-backup-context.jsonld
+  - type: SpectralRuleset
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/amazon-backup/refs/heads/main/spectral/ruleset.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/amazon-backup/refs/heads/main/capabilities/capabilities.yml
+  - type: Vocabulary
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/amazon-backup/refs/heads/main/vocabulary/vocabulary.yml
+  - type: Pricing
+    url: https://aws.amazon.com/backup/pricing/
+  - type: GettingStarted
+    url: https://aws.amazon.com/backup/getting-started/
+  - type: FAQ
+    url: https://aws.amazon.com/backup/faqs/
+  - type: UserGuide
+    url: https://docs.aws.amazon.com/aws-backup/latest/devguide/
+  - type: APIReference
+    url: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_Reference.html
+  - type: CLIReference
+    url: https://docs.aws.amazon.com/cli/latest/reference/backup/
+  - type: Security
+    url: https://docs.aws.amazon.com/aws-backup/latest/devguide/security.html
+  - type: Packages
+    url: packages/amazon-backup-packages.yml
+  - type: LLMsTxt
+    url: llms/amazon-backup-llms.txt
+  - type: Conformance
+    url: conformance/amazon-backup-conformance.yml
+  - type: ErrorCatalog
+    url: errors/amazon-backup-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/amazon-backup-lifecycle.yml
+- aid: amazon-backup:amazon-backup-backup-vaults-api
+  name: Amazon Backup Backup Vaults API
+  description: Operations for creating and managing backup vaults
+  humanURL: https://aws.amazon.com/backup/
+  baseURL: https://backup.us-east-1.amazonaws.com
+  tags:
+  - Backup Vaults
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-backup-backup-vaults-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/aws-backup/latest/devguide/
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/amazon-backup/refs/heads/main/json-schema/amazon-backup-plan-schema.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/amazon-backup/refs/heads/main/json-structure/backup-resource-structure.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/amazon-backup/refs/heads/main/json-ld/amazon-backup-context.jsonld
+  - type: SpectralRuleset
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/amazon-backup/refs/heads/main/spectral/ruleset.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/amazon-backup/refs/heads/main/capabilities/capabilities.yml
+  - type: Vocabulary
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/amazon-backup/refs/heads/main/vocabulary/vocabulary.yml
+  - type: Pricing
+    url: https://aws.amazon.com/backup/pricing/
+  - type: GettingStarted
+    url: https://aws.amazon.com/backup/getting-started/
+  - type: FAQ
+    url: https://aws.amazon.com/backup/faqs/
+  - type: UserGuide
+    url: https://docs.aws.amazon.com/aws-backup/latest/devguide/
+  - type: APIReference
+    url: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_Reference.html
+  - type: CLIReference
+    url: https://docs.aws.amazon.com/cli/latest/reference/backup/
+  - type: Security
+    url: https://docs.aws.amazon.com/aws-backup/latest/devguide/security.html
+  - type: Packages
+    url: packages/amazon-backup-packages.yml
+  - type: LLMsTxt
+    url: llms/amazon-backup-llms.txt
+  - type: Conformance
+    url: conformance/amazon-backup-conformance.yml
+  - type: ErrorCatalog
+    url: errors/amazon-backup-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/amazon-backup-lifecycle.yml
+- aid: amazon-backup:amazon-backup-restore-jobs-api
+  name: Amazon Backup Restore Jobs API
+  description: Operations for restoring backed-up resources
+  humanURL: https://aws.amazon.com/backup/
+  baseURL: https://backup.us-east-1.amazonaws.com
+  tags:
+  - Restore Jobs
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-backup-restore-jobs-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/aws-backup/latest/devguide/
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/amazon-backup/refs/heads/main/json-schema/amazon-backup-plan-schema.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/amazon-backup/refs/heads/main/json-structure/backup-resource-structure.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/amazon-backup/refs/heads/main/json-ld/amazon-backup-context.jsonld
+  - type: SpectralRuleset
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/amazon-backup/refs/heads/main/spectral/ruleset.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/amazon-backup/refs/heads/main/capabilities/capabilities.yml
+  - type: Vocabulary
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/amazon-backup/refs/heads/main/vocabulary/vocabulary.yml
+  - type: Pricing
+    url: https://aws.amazon.com/backup/pricing/
+  - type: GettingStarted
+    url: https://aws.amazon.com/backup/getting-started/
+  - type: FAQ
+    url: https://aws.amazon.com/backup/faqs/
+  - type: UserGuide
+    url: https://docs.aws.amazon.com/aws-backup/latest/devguide/
+  - type: APIReference
+    url: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_Reference.html
+  - type: CLIReference
+    url: https://docs.aws.amazon.com/cli/latest/reference/backup/
+  - type: Security
+    url: https://docs.aws.amazon.com/aws-backup/latest/devguide/security.html
+  - type: Packages
+    url: packages/amazon-backup-packages.yml
+  - type: LLMsTxt
+    url: llms/amazon-backup-llms.txt
+  - type: Conformance
+    url: conformance/amazon-backup-conformance.yml
+  - type: ErrorCatalog
+    url: errors/amazon-backup-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/amazon-backup-lifecycle.yml
 common:
   - type: AgenticAccess
     url: agentic-access/amazon-backup-agentic-access.yml
