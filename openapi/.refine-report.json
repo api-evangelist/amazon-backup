@@ -1,0 +1,20 @@
+{
+  "provider": "amazon-backup",
+  "sources": [
+    "amazon-backup-backup-jobs-api-openapi.yml",
+    "amazon-backup-backup-plans-api-openapi.yml",
+    "amazon-backup-backup-vaults-api-openapi.yml",
+    "amazon-backup-restore-jobs-api-openapi.yml"
+  ],
+  "outputs": [
+    "amazon-backup-backup-jobs-api-openapi.yml",
+    "amazon-backup-backup-plans-api-openapi.yml",
+    "amazon-backup-backup-vaults-api-openapi.yml",
+    "amazon-backup-restore-jobs-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
