@@ -252,6 +252,10 @@ apis:
   - type: Lifecycle
     url: lifecycle/amazon-backup-lifecycle.yml
 common:
+  - type: MCPServer
+    url: mcp/amazon-backup-mcp.yml
+  - type: Overlay
+    url: overlays/amazon-backup-openapi-overlay.yaml
   - type: AgenticAccess
     url: agentic-access/amazon-backup-agentic-access.yml
   - type: TrustCenter
