@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Backup Backup Jobs Restore Jobs API",
+    "version": "2018-11-15"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Restore Jobs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Backup List restore jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://backup.{region}.amazonaws.com/restore-jobs",
+            "params": [
+              {
+                "name": "maxResults",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return."
+              },
+              {
+                "name": "nextToken",
+                "value": "",
+                "type": "query",
+                "description": "Token for pagination."
+              }
+            ]
+          },
+          "docs": "Returns a list of jobs that AWS Backup initiated to restore a saved resource, including details about the recovery process."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

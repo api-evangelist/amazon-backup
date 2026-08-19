@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Backup Backup Jobs API",
+    "version": "2018-11-15"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Backup Jobs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Backup List backup jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://backup.{region}.amazonaws.com/backup-jobs",
+            "params": [
+              {
+                "name": "maxResults",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return."
+              },
+              {
+                "name": "nextToken",
+                "value": "",
+                "type": "query",
+                "description": "Token for pagination."
+              },
+              {
+                "name": "byState",
+                "value": "",
+                "type": "query",
+                "description": "Filter by job state."
+              }
+            ]
+          },
+          "docs": "Returns a list of existing backup jobs for an authenticated account."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

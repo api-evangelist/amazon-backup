@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Backup Backup Jobs Backup Vaults API",
+    "version": "2018-11-15"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Backup Vaults",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Backup List backup vaults",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://backup.{region}.amazonaws.com/backup-vaults",
+            "params": [
+              {
+                "name": "maxResults",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return."
+              },
+              {
+                "name": "nextToken",
+                "value": "",
+                "type": "query",
+                "description": "Token for pagination."
+              }
+            ]
+          },
+          "docs": "Returns a list of recovery point storage containers along with information about them."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,96 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Backup Backup Jobs Backup Plans API",
+    "version": "2018-11-15"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Backup Plans",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Backup List backup plans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://backup.{region}.amazonaws.com/backup/plans",
+            "params": [
+              {
+                "name": "maxResults",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return."
+              },
+              {
+                "name": "nextToken",
+                "value": "",
+                "type": "query",
+                "description": "Token for pagination."
+              }
+            ]
+          },
+          "docs": "Returns a list of all active backup plans for an authenticated account."
+        },
+        {
+          "info": {
+            "name": "Amazon Backup Create a backup plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://backup.{region}.amazonaws.com/backup/plans",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a backup plan using a backup plan name and backup rules. A backup plan defines when and how to back up your AWS resources."
+        },
+        {
+          "info": {
+            "name": "Amazon Backup Get backup plan details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://backup.{region}.amazonaws.com/backup/plans/:backupPlanId",
+            "params": [
+              {
+                "name": "backupPlanId",
+                "value": "",
+                "type": "path",
+                "description": "Uniquely identifies a backup plan."
+              }
+            ]
+          },
+          "docs": "Returns the body of a backup plan in JSON format, in addition to plan metadata."
+        },
+        {
+          "info": {
+            "name": "Amazon Backup Delete a backup plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://backup.{region}.amazonaws.com/backup/plans/:backupPlanId",
+            "params": [
+              {
+                "name": "backupPlanId",
+                "value": "",
+                "type": "path",
+                "description": "Uniquely identifies a backup plan."
+              }
+            ]
+          },
+          "docs": "Deletes a backup plan. A backup plan can only be deleted after all associated selections of resources have been deleted."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

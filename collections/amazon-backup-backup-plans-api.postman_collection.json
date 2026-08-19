@@ -1,0 +1,1024 @@
+{
+  "item": [
+    {
+      "id": "e4969825-708f-44fc-8720-e5a87149c224",
+      "name": "Backup Plans",
+      "description": {
+        "content": "Operations for creating and managing backup plans",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b6323ea6-ee6e-407c-a5b4-661d631ef6a7",
+          "name": "Amazon Backup List backup plans",
+          "request": {
+            "name": "Amazon Backup List backup plans",
+            "description": {
+              "content": "Returns a list of all active backup plans for an authenticated account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "backup",
+                "plans"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "maxResults",
+                  "value": "<integer>",
+                  "description": "Maximum number of results to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "nextToken",
+                  "value": "<string>",
+                  "description": "Token for pagination."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "AWS Region",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d1589c53-d975-47d6-a686-87ba603400ef",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "backup",
+                    "plans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxResults",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "AWS Region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"backupPlansList\": [\n    {\n      \"backupPlanArn\": \"string\",\n      \"backupPlanId\": \"string\",\n      \"backupPlanName\": \"string\",\n      \"creationDate\": \"1957-12-05T12:18:04.140Z\",\n      \"lastExecutionDate\": \"1994-08-07T17:38:40.889Z\"\n    },\n    {\n      \"backupPlanArn\": \"string\",\n      \"backupPlanId\": \"string\",\n      \"backupPlanName\": \"string\",\n      \"creationDate\": \"2003-08-13T16:35:13.063Z\",\n      \"lastExecutionDate\": \"2018-12-10T00:08:23.204Z\"\n    }\n  ],\n  \"nextToken\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "514c1468-162e-4c76-b322-a4be91f226b2",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "backup",
+                    "plans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxResults",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "AWS Region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Code\": \"string\",\n  \"Message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aab19cc5-1391-459e-b6a3-128f0f298b03",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "backup",
+                    "plans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxResults",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "AWS Region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Code\": \"string\",\n  \"Message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "535736c0-f3ee-4f8a-9590-ad8649486ed2",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "backup",
+                    "plans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxResults",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "AWS Region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Code\": \"string\",\n  \"Message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "886229b3-daf4-4332-b6cd-138cfa9fc611",
+          "name": "Amazon Backup Create a backup plan",
+          "request": {
+            "name": "Amazon Backup Create a backup plan",
+            "description": {
+              "content": "Creates a backup plan using a backup plan name and backup rules. A backup plan defines when and how to back up your AWS resources.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "backup",
+                "plans"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "AWS Region",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"BackupPlan\": {\n    \"BackupPlanName\": \"<string>\",\n    \"Rules\": [\n      {\n        \"RuleName\": \"<string>\",\n        \"TargetBackupVaultName\": \"<string>\",\n        \"ScheduleExpression\": \"<string>\",\n        \"StartWindowMinutes\": \"<integer>\",\n        \"CompletionWindowMinutes\": \"<integer>\",\n        \"Lifecycle\": {\n          \"MoveToColdStorageAfterDays\": \"<integer>\",\n          \"DeleteAfterDays\": \"<integer>\"\n        }\n      },\n      {\n        \"RuleName\": \"<string>\",\n        \"TargetBackupVaultName\": \"<string>\",\n        \"ScheduleExpression\": \"<string>\",\n        \"StartWindowMinutes\": \"<integer>\",\n        \"CompletionWindowMinutes\": \"<integer>\",\n        \"Lifecycle\": {\n          \"MoveToColdStorageAfterDays\": \"<integer>\",\n          \"DeleteAfterDays\": \"<integer>\"\n        }\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bcbef5cb-17e7-4dc7-824c-594908730a5d",
+              "name": "Backup plan created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "backup",
+                    "plans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "AWS Region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"BackupPlan\": {\n    \"BackupPlanName\": \"<string>\",\n    \"Rules\": [\n      {\n        \"RuleName\": \"<string>\",\n        \"TargetBackupVaultName\": \"<string>\",\n        \"ScheduleExpression\": \"<string>\",\n        \"StartWindowMinutes\": \"<integer>\",\n        \"CompletionWindowMinutes\": \"<integer>\",\n        \"Lifecycle\": {\n          \"MoveToColdStorageAfterDays\": \"<integer>\",\n          \"DeleteAfterDays\": \"<integer>\"\n        }\n      },\n      {\n        \"RuleName\": \"<string>\",\n        \"TargetBackupVaultName\": \"<string>\",\n        \"ScheduleExpression\": \"<string>\",\n        \"StartWindowMinutes\": \"<integer>\",\n        \"CompletionWindowMinutes\": \"<integer>\",\n        \"Lifecycle\": {\n          \"MoveToColdStorageAfterDays\": \"<integer>\",\n          \"DeleteAfterDays\": \"<integer>\"\n        }\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"backupPlanId\": \"string\",\n  \"backupPlanArn\": \"string\",\n  \"creationDate\": \"1987-10-06T15:24:28.189Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3752c6f7-1e83-44b9-bfc0-5629546b899f",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "backup",
+                    "plans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "AWS Region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"BackupPlan\": {\n    \"BackupPlanName\": \"<string>\",\n    \"Rules\": [\n      {\n        \"RuleName\": \"<string>\",\n        \"TargetBackupVaultName\": \"<string>\",\n        \"ScheduleExpression\": \"<string>\",\n        \"StartWindowMinutes\": \"<integer>\",\n        \"CompletionWindowMinutes\": \"<integer>\",\n        \"Lifecycle\": {\n          \"MoveToColdStorageAfterDays\": \"<integer>\",\n          \"DeleteAfterDays\": \"<integer>\"\n        }\n      },\n      {\n        \"RuleName\": \"<string>\",\n        \"TargetBackupVaultName\": \"<string>\",\n        \"ScheduleExpression\": \"<string>\",\n        \"StartWindowMinutes\": \"<integer>\",\n        \"CompletionWindowMinutes\": \"<integer>\",\n        \"Lifecycle\": {\n          \"MoveToColdStorageAfterDays\": \"<integer>\",\n          \"DeleteAfterDays\": \"<integer>\"\n        }\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Code\": \"string\",\n  \"Message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "076fec2a-56cc-46f1-9bba-5bb03ee6cf53",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "backup",
+                    "plans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "AWS Region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"BackupPlan\": {\n    \"BackupPlanName\": \"<string>\",\n    \"Rules\": [\n      {\n        \"RuleName\": \"<string>\",\n        \"TargetBackupVaultName\": \"<string>\",\n        \"ScheduleExpression\": \"<string>\",\n        \"StartWindowMinutes\": \"<integer>\",\n        \"CompletionWindowMinutes\": \"<integer>\",\n        \"Lifecycle\": {\n          \"MoveToColdStorageAfterDays\": \"<integer>\",\n          \"DeleteAfterDays\": \"<integer>\"\n        }\n      },\n      {\n        \"RuleName\": \"<string>\",\n        \"TargetBackupVaultName\": \"<string>\",\n        \"ScheduleExpression\": \"<string>\",\n        \"StartWindowMinutes\": \"<integer>\",\n        \"CompletionWindowMinutes\": \"<integer>\",\n        \"Lifecycle\": {\n          \"MoveToColdStorageAfterDays\": \"<integer>\",\n          \"DeleteAfterDays\": \"<integer>\"\n        }\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Code\": \"string\",\n  \"Message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "59eedcd8-0372-4c52-9acb-d7569e41d8d5",
+          "name": "Amazon Backup Get backup plan details",
+          "request": {
+            "name": "Amazon Backup Get backup plan details",
+            "description": {
+              "content": "Returns the body of a backup plan in JSON format, in addition to plan metadata.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "backup",
+                "plans",
+                ":backupPlanId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "backupPlanId",
+                  "description": "(Required) Uniquely identifies a backup plan."
+                },
+                {
+                  "description": "AWS Region",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "408b66ce-13d4-4489-af61-6743452af747",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "backup",
+                    "plans",
+                    ":backupPlanId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "backupPlanId",
+                      "description": "(Required) Uniquely identifies a backup plan."
+                    },
+                    {
+                      "description": "AWS Region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"backupPlanId\": \"string\",\n  \"backupPlanArn\": \"string\",\n  \"backupPlan\": {\n    \"BackupPlanName\": \"string\"\n  },\n  \"creationDate\": \"1948-02-18T00:42:13.816Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c07ea87c-4c53-4f04-8db4-02be6ad6158d",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "backup",
+                    "plans",
+                    ":backupPlanId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "backupPlanId",
+                      "description": "(Required) Uniquely identifies a backup plan."
+                    },
+                    {
+                      "description": "AWS Region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Code\": \"string\",\n  \"Message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b58b8efb-3bd5-4a4f-8ef5-fb94cf1a5714",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "backup",
+                    "plans",
+                    ":backupPlanId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "backupPlanId",
+                      "description": "(Required) Uniquely identifies a backup plan."
+                    },
+                    {
+                      "description": "AWS Region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Code\": \"string\",\n  \"Message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "055c8b62-8cd9-4b8e-8513-013a354eb243",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "backup",
+                    "plans",
+                    ":backupPlanId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "backupPlanId",
+                      "description": "(Required) Uniquely identifies a backup plan."
+                    },
+                    {
+                      "description": "AWS Region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Code\": \"string\",\n  \"Message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a9152fe0-26c4-488b-b13b-491447f41cd8",
+          "name": "Amazon Backup Delete a backup plan",
+          "request": {
+            "name": "Amazon Backup Delete a backup plan",
+            "description": {
+              "content": "Deletes a backup plan. A backup plan can only be deleted after all associated selections of resources have been deleted.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "backup",
+                "plans",
+                ":backupPlanId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "backupPlanId",
+                  "description": "(Required) Uniquely identifies a backup plan."
+                },
+                {
+                  "description": "AWS Region",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ba72ff03-c3a4-4678-b230-fe30d1a40a5e",
+              "name": "Backup plan deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "backup",
+                    "plans",
+                    ":backupPlanId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "backupPlanId",
+                      "description": "(Required) Uniquely identifies a backup plan."
+                    },
+                    {
+                      "description": "AWS Region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"backupPlanId\": \"string\",\n  \"backupPlanArn\": \"string\",\n  \"deletionDate\": \"1950-11-14T01:47:01.643Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "33c0f36a-f04e-465f-964b-58f067d7ff79",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "backup",
+                    "plans",
+                    ":backupPlanId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "backupPlanId",
+                      "description": "(Required) Uniquely identifies a backup plan."
+                    },
+                    {
+                      "description": "AWS Region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Code\": \"string\",\n  \"Message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "481381b8-9194-4df1-a67c-c71a6ec353b5",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "backup",
+                    "plans",
+                    ":backupPlanId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "backupPlanId",
+                      "description": "(Required) Uniquely identifies a backup plan."
+                    },
+                    {
+                      "description": "AWS Region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Code\": \"string\",\n  \"Message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4ad9f229-c261-4796-93bb-10a97a6e9103",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "backup",
+                    "plans",
+                    ":backupPlanId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "backupPlanId",
+                      "description": "(Required) Uniquely identifies a backup plan."
+                    },
+                    {
+                      "description": "AWS Region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Code\": \"string\",\n  \"Message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "AWS Region",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us-east-1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://backup.{{region}}.amazonaws.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "8626aeb0-1b4a-468b-a719-cfc423b7a734",
+    "name": "Amazon Backup Backup Jobs Backup Plans API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "AWS Backup is a fully managed backup service that makes it easy to centralize and automate the back up of data across AWS services. Using the AWS Backup API, you can create backup plans, manage backup vaults, start and monitor backup and restore jobs, and manage recovery points.\n\nContact Support:\n Name: Amazon Web Services",
+      "type": "text/plain"
+    }
+  }
+}
