@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Amazon Backup Backup Jobs Backup Plans API
   description: AWS Backup is a fully managed backup service that makes it easy to centralize and automate the back up of data across AWS services. Using the AWS Backup API, you can create backup plans, manage backup vaults, start and monitor backup and restore jobs, and manage recovery points.
@@ -173,13 +173,86 @@ paths:
                 $ref: '#/components/schemas/ServiceUnavailableException'
 components:
   schemas:
-    LimitExceededException:
+    CreateBackupPlanResponse:
+      type: object
+      properties:
+        backupPlanId:
+          type: string
+        backupPlanArn:
+          type: string
+        creationDate:
+          type: string
+          format: date-time
+    DeleteBackupPlanResponse:
+      type: object
+      properties:
+        backupPlanId:
+          type: string
+        backupPlanArn:
+          type: string
+        deletionDate:
+          type: string
+          format: date-time
+    InvalidParameterValueException:
       type: object
       properties:
         Code:
           type: string
         Message:
           type: string
+    BackupPlanSummary:
+      type: object
+      properties:
+        backupPlanArn:
+          type: string
+          description: The ARN of the backup plan.
+        backupPlanId:
+          type: string
+          description: Uniquely identifies a backup plan.
+        backupPlanName:
+          type: string
+          description: The display name of a backup plan.
+        creationDate:
+          type: string
+          format: date-time
+          description: The date and time the resource backup plan was created.
+        lastExecutionDate:
+          type: string
+          format: date-time
+          description: The last time a job to back up resources was run.
+    ResourceNotFoundException:
+      type: object
+      properties:
+        Code:
+          type: string
+        Message:
+          type: string
+    ServiceUnavailableException:
+      type: object
+      properties:
+        Code:
+          type: string
+        Message:
+          type: string
+    GetBackupPlanResponse:
+      type: object
+      properties:
+        backupPlanId:
+          type: string
+        backupPlanArn:
+          type: string
+        backupPlan:
+          type: object
+          properties:
+            BackupPlanName:
+              type: string
+            Rules:
+              type: array
+              items:
+                type: object
+        creationDate:
+          type: string
+          format: date-time
     CreateBackupPlanRequest:
       type: object
       required:
@@ -219,80 +292,7 @@ components:
                         type: integer
                       DeleteAfterDays:
                         type: integer
-    InvalidParameterValueException:
-      type: object
-      properties:
-        Code:
-          type: string
-        Message:
-          type: string
-    CreateBackupPlanResponse:
-      type: object
-      properties:
-        backupPlanId:
-          type: string
-        backupPlanArn:
-          type: string
-        creationDate:
-          type: string
-          format: date-time
-    DeleteBackupPlanResponse:
-      type: object
-      properties:
-        backupPlanId:
-          type: string
-        backupPlanArn:
-          type: string
-        deletionDate:
-          type: string
-          format: date-time
-    GetBackupPlanResponse:
-      type: object
-      properties:
-        backupPlanId:
-          type: string
-        backupPlanArn:
-          type: string
-        backupPlan:
-          type: object
-          properties:
-            BackupPlanName:
-              type: string
-            Rules:
-              type: array
-              items:
-                type: object
-        creationDate:
-          type: string
-          format: date-time
-    ServiceUnavailableException:
-      type: object
-      properties:
-        Code:
-          type: string
-        Message:
-          type: string
-    BackupPlanSummary:
-      type: object
-      properties:
-        backupPlanArn:
-          type: string
-          description: The ARN of the backup plan.
-        backupPlanId:
-          type: string
-          description: Uniquely identifies a backup plan.
-        backupPlanName:
-          type: string
-          description: The display name of a backup plan.
-        creationDate:
-          type: string
-          format: date-time
-          description: The date and time the resource backup plan was created.
-        lastExecutionDate:
-          type: string
-          format: date-time
-          description: The last time a job to back up resources was run.
-    ResourceNotFoundException:
+    LimitExceededException:
       type: object
       properties:
         Code:

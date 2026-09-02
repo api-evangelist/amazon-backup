@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Amazon Backup Backup Jobs Restore Jobs API
   description: AWS Backup is a fully managed backup service that makes it easy to centralize and automate the back up of data across AWS services. Using the AWS Backup API, you can create backup plans, manage backup vaults, start and monitor backup and restore jobs, and manage recovery points.
@@ -66,6 +66,13 @@ components:
           type: string
         Message:
           type: string
+    ServiceUnavailableException:
+      type: object
+      properties:
+        Code:
+          type: string
+        Message:
+          type: string
     ListRestoreJobsResponse:
       type: object
       properties:
@@ -89,13 +96,6 @@ components:
                 type: string
                 format: date-time
         nextToken:
-          type: string
-    ServiceUnavailableException:
-      type: object
-      properties:
-        Code:
-          type: string
-        Message:
           type: string
 externalDocs:
   description: Amazon Backup API Reference
