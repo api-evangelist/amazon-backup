@@ -73,6 +73,13 @@ paths:
                 $ref: '#/components/schemas/ServiceUnavailableException'
 components:
   schemas:
+    ServiceUnavailableException:
+      type: object
+      properties:
+        Code:
+          type: string
+        Message:
+          type: string
     InvalidParameterValueException:
       type: object
       properties:
@@ -105,13 +112,6 @@ components:
                 type: string
                 format: date-time
         nextToken:
-          type: string
-    ServiceUnavailableException:
-      type: object
-      properties:
-        Code:
-          type: string
-        Message:
           type: string
 externalDocs:
   description: Amazon Backup API Reference

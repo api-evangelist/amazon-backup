@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Amazon Backup Backup Jobs Backup Plans API
+  title: Amazon Backup Backup Plans API
   description: AWS Backup is a fully managed backup service that makes it easy to centralize and automate the back up of data across AWS services. Using the AWS Backup API, you can create backup plans, manage backup vaults, start and monitor backup and restore jobs, and manage recovery points.
   version: '2018-11-15'
   contact:
@@ -173,27 +173,7 @@ paths:
                 $ref: '#/components/schemas/ServiceUnavailableException'
 components:
   schemas:
-    CreateBackupPlanResponse:
-      type: object
-      properties:
-        backupPlanId:
-          type: string
-        backupPlanArn:
-          type: string
-        creationDate:
-          type: string
-          format: date-time
-    DeleteBackupPlanResponse:
-      type: object
-      properties:
-        backupPlanId:
-          type: string
-        backupPlanArn:
-          type: string
-        deletionDate:
-          type: string
-          format: date-time
-    InvalidParameterValueException:
+    LimitExceededException:
       type: object
       properties:
         Code:
@@ -220,13 +200,6 @@ components:
           type: string
           format: date-time
           description: The last time a job to back up resources was run.
-    ResourceNotFoundException:
-      type: object
-      properties:
-        Code:
-          type: string
-        Message:
-          type: string
     ServiceUnavailableException:
       type: object
       properties:
@@ -234,22 +207,46 @@ components:
           type: string
         Message:
           type: string
-    GetBackupPlanResponse:
+    InvalidParameterValueException:
+      type: object
+      properties:
+        Code:
+          type: string
+        Message:
+          type: string
+    ListBackupPlansResponse:
+      type: object
+      properties:
+        backupPlansList:
+          type: array
+          items:
+            $ref: '#/components/schemas/BackupPlanSummary'
+        nextToken:
+          type: string
+    ResourceNotFoundException:
+      type: object
+      properties:
+        Code:
+          type: string
+        Message:
+          type: string
+    DeleteBackupPlanResponse:
       type: object
       properties:
         backupPlanId:
           type: string
         backupPlanArn:
           type: string
-        backupPlan:
-          type: object
-          properties:
-            BackupPlanName:
-              type: string
-            Rules:
-              type: array
-              items:
-                type: object
+        deletionDate:
+          type: string
+          format: date-time
+    CreateBackupPlanResponse:
+      type: object
+      properties:
+        backupPlanId:
+          type: string
+        backupPlanArn:
+          type: string
         creationDate:
           type: string
           format: date-time
@@ -292,22 +289,25 @@ components:
                         type: integer
                       DeleteAfterDays:
                         type: integer
-    LimitExceededException:
+    GetBackupPlanResponse:
       type: object
       properties:
-        Code:
+        backupPlanId:
           type: string
-        Message:
+        backupPlanArn:
           type: string
-    ListBackupPlansResponse:
-      type: object
-      properties:
-        backupPlansList:
-          type: array
-          items:
-            $ref: '#/components/schemas/BackupPlanSummary'
-        nextToken:
+        backupPlan:
+          type: object
+          properties:
+            BackupPlanName:
+              type: string
+            Rules:
+              type: array
+              items:
+                type: object
+        creationDate:
           type: string
+          format: date-time
 externalDocs:
   description: Amazon Backup API Reference
   url: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_Reference.html

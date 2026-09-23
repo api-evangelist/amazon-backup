@@ -1,10 +1,7 @@
 {
   "provider": "amazon-backup",
   "sources": [
-    "amazon-backup-backup-jobs-api-openapi.yml",
-    "amazon-backup-backup-plans-api-openapi.yml",
-    "amazon-backup-backup-vaults-api-openapi.yml",
-    "amazon-backup-restore-jobs-api-openapi.yml"
+    "_original/amazon-backup-openapi.yml"
   ],
   "outputs": [
     "amazon-backup-backup-jobs-api-openapi.yml",
@@ -16,7 +13,14 @@
   "errors": [],
   "warnings": [],
   "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "amazon-backup-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "amazon-backup-backup-jobs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "amazon-backup-backup-plans-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "amazon-backup-backup-vaults-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "amazon-backup-restore-jobs-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
